@@ -27,12 +27,16 @@ void Exemplo_Hashing()
 }
 int Menu()
 {
+
+    printf(" ---------------------------\n");
+    printf("|        MENU GERAL         |\n");
+    printf(" ---------------------------\n");
     printf(" --------------------------- \n");
     printf("| 1- Administração          |\n");
     printf("| 2- Cliente                |\n");
     printf("| 3- Biblioteca             |\n");
     printf("| 4- Livros                 |\n");
-    printf("| 0-Sair                    |\n");
+    printf("| 0- Sair                    |\n");
     printf(" ---------------------------\n");
     int op;
     op = LerInteiro("Qual a o opcao? ");
@@ -42,9 +46,18 @@ int Menu()
 
 int MenuAdm ()
 {
-    printf(" ---------------------------\n");
-    printf("|       ADMINISTRAÇÃO       |\n");
-    printf(" ---------------------------\n");
+    printf("   ---------------------------    \n");
+    printf("  |       ADMINISTRAÇÃO       |   \n");
+    printf("   ---------------------------    \n");
+    printf(" -------------------------------- \n");
+    printf("| 1- Listar Livro                |\n");
+    printf("| 2- Remover Livro               |\n");
+    printf("| 3- Listar Clientes             |\n");
+    printf("| 4- Listar Livros Requesitados  |\n");
+    printf("| 5- Listar Requesitantes        |\n");
+    printf("| 6- Pesquisar Requesitante      |\n");
+    printf("| 0- Sair                         |\n");
+    printf(" --------------------------------\n");
 
     int opadm;
     opadm = LerInteiro("Qual a o opcao? ");
@@ -54,7 +67,14 @@ int MenuAdm ()
 int Menuclient ()
 {
     printf(" ---------------------------\n");
-    printf("|          CLIENTE          |\n"); // Na requesição do livro o utilizador tem de adicionar as suas informaçõs tipo nome e ssas cenas.
+    printf("|          CLIENTE          |\n");
+    printf(" ---------------------------\n");
+    printf(" --------------------------- \n");
+    printf("| 1- Requesitar Livro       |\n");
+    printf("| 2- Devolver Livro         |\n");
+    printf("| 5- Pesquisar Livro        |\n");
+    printf("| 5- Pesquisar Area         |\n");
+    printf("| 0- Sair                    |\n");
     printf(" ---------------------------\n");
 
     int opclient;
@@ -66,6 +86,9 @@ int Menuclient ()
 
 int MenuBiblio()
 {
+    printf("      ---------------------------       \n");
+    printf("     |          BIBLIOTECA       |      \n");
+    printf("      ---------------------------       \n");
     printf(" ---------------------------------------\n");
     printf("| 1- Adicionar livro                    |\n");
     printf("| 2- Remover livro                      |\n");
@@ -75,7 +98,7 @@ int MenuBiblio()
     printf("| 6- Livro mais requesitado             |\n");
     printf("| 7- Livro mais recente                 |\n");
     printf("| 8- Area mais requesitada              |\n");
-    printf("| 0-Sair                                |\n");
+    printf("| 0- Sair                                |\n");
     printf(" ---------------------------------------\n");
     int opBiblio;
     opBiblio = LerInteiro("Qual a o opcao? ");
@@ -84,12 +107,15 @@ int MenuBiblio()
 
 int MenuLivro ()
 {
-    printf(" --------------------------- \n");
-    printf("| 1- Requesitar Livro       |\n"); // Na requesição do livro o utilizador tem de adicionar as suas informaçõs tipo nome e ssas cenas.
-    printf("| 2- Devolver Livro         |\n");
-    printf("| 5- Verificar Existenc     |\n");
-    printf("| 0-Sair                    |\n");
-    printf(" ---------------------------\n");
+    printf("     ---------------------------       \n");
+    printf("    |           LIVRO           |      \n");
+    printf("     ---------------------------       \n");
+    printf(" --------------------------------------\n");
+    printf("| 1- Pesquisar Livro                   |\n");
+    printf("| 2- Registrar Livro                   |\n");
+    printf("| 5- Verificar Existencia de Livro     |\n");
+    printf("| 0- Sair                               |\n");
+    printf(" --------------------------------------\n");
     int opLivro;
     opLivro = LerInteiro("Qual a o opcao? ");
     return opLivro;
