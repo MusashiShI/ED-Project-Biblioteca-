@@ -26,16 +26,49 @@ void Exemplo_Hashing()
 }
 int Menu()
 {
-    printf(" --------------------------------------------- \n");
-    printf("| 1- Adicionar Livro a Biblioteca             |\n");
-    printf("| 2- Remover Livro da Biblioteca              |\n");
-    printf("| 3- Nome mais Comum                          |\n");
-    printf("| 0-Sair                                      |\n");
-    printf(" --------------------------------------------- \n");
+    printf(" --------------------------- \n");
+    printf("| 1- Biblioteca             |\n");
+    printf("| 2- Livros                 |\n");
+    printf("| 0-Sair                    |\n");
+    printf(" ---------------------------\n");
     int op;
     op = LerInteiro("Qual a o opcao? ");
     return op;
 }
+
+
+int MenuBiblio()
+{
+    printf(" ------------------------------- \n");
+    printf("| 1- Adicionar Livro            |\n");
+    printf("| 2- Remover Livro              |\n");
+    printf("| 3- Listar Livros              |\n");
+    printf("| 4- Determinar Area Superior   |\n");
+    printf("| 0-Sair                        |\n");
+    printf(" -------------------------------\n");
+    int opBiblio;
+    opBiblio = LerInteiro("Qual a o opcao? ");
+    return opBiblio;
+}
+
+int MenuLivro ()
+{
+    printf(" --------------------------- \n");
+    printf("| 1- Biblioteca             |\n");
+    printf("| 2- Livros                 |\n");
+    printf("| 0-Sair                    |\n");
+    printf(" ---------------------------\n");
+    int opLivro;
+    opLivro = LerInteiro("Qual a o opcao? ");
+    return opLivro;
+}
+
+
+
+
+
+
+
 
 
 
@@ -46,17 +79,55 @@ int main()
     //Exemplo_Hashing();
     BIBLIOTECA *Bib;
     Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
-    int OP;
+    int OP, OPB, OPL;
     do
     {
+        system("cls");
         OP = Menu();
         switch(OP)
         {
-            case 1: LoadFicheiroBiblioteca(Bib); break;
-            case 2: ShowBiblioteca(Bib); break;
+            case 1:
+                system("cls");
+                MenuBiblio;
+                do
+                {
+                    OPB = MenuBiblio();
+                    switch(OPB)
+                    {
+                       case 1:
+                        break;
+
+
+                    }
+                }while (OPB != 0);
+            break;
+
+
+
+
+
+
+
+
+// -------------------- SEPARAÇÃO MENUS ----------------------
+
+
+
+
+
+
+
+
+
+
+            case 2:  system("cls");
+                    MenuLivro;
+                break;
+
+
             default:
                 printf("Opcao nao implementada\n"); break;
-        }
+        }while (OPL != 0);
 
     }while (OP != 0);
     DestruirBiblioteca(Bib);
