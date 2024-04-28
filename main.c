@@ -206,8 +206,16 @@ int main()
                     switch(OPC)
                     {
                        case 1:
+                           RequeitarLivro(BIBLIOTECA *B, PESSOA *X);
                         break;
 
+                       case 2:
+                           DevolverLivro(BIBLIOTECA *B, PESSOA *X);
+                        break;
+
+                       case 3:
+
+                        break;
 
                     }
                 }while (OPC != 0);
@@ -227,6 +235,11 @@ int main()
                     switch(OPB)
                     {
                        case 1:
+
+                        break;
+
+                       case 2:
+
                         break;
 
 
