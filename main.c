@@ -32,7 +32,7 @@ int Menu()
     printf("|        MENU GERAL         |\n");
     printf(" ---------------------------\n");
     printf(" --------------------------- \n");
-    printf("| 1- Administração          |\n");
+    printf("| 1- AdministraÃ§Ã£o          |\n");
     printf("| 2- Cliente                |\n");
     printf("| 3- Biblioteca             |\n");
     printf("| 4- Livros                 |\n");
@@ -47,16 +47,18 @@ int Menu()
 int MenuAdm ()
 {
     printf("   ---------------------------    \n");
-    printf("  |       ADMINISTRAÇÃO       |   \n");
+    printf("  |       ADMINISTRAÃ‡ÃƒO       |   \n");
     printf("   ---------------------------    \n");
     printf(" -------------------------------- \n");
     printf("| 1- Listar Livro                |\n");
     printf("| 2- Remover Livro               |\n");
     printf("| 3- Listar Clientes             |\n");
     printf("| 4- Listar Livros Requesitados  |\n");
-    printf("| 5- Listar Requesitantes        |\n");
-    printf("| 6- Pesquisar Requesitante      |\n");
-    printf("| 0- Sair                         |\n");
+    printf("| 5- Mostrar Biblioteca          |\n");
+    printf("| 6- Destruir Biblioteca         |\n");
+    printf("| 7- Listar Requesitantes        |\n");
+    printf("| 8- Pesquisar Requesitante      |\n");
+    printf("| 0- Sair                        |\n");
     printf(" --------------------------------\n");
 
     int opadm;
@@ -144,8 +146,8 @@ int main()
         OP = Menu();
         switch(OP)
         {
-// -------------------- SEPARAÇÃO MENUS ----------------------
-// --------------------- ADMINISTRAÇÃO -----------------------
+// -------------------- SEPARAí”ŒO MENUS ----------------------
+// --------------------- ADMINISTRAí”ŒO -----------------------
             case 1:
                 system("cls");
                 MenuAdm;
@@ -155,14 +157,44 @@ int main()
                     switch(OPA)
                     {
                        case 1:
-                       break;
+                            ListarLivrosDaBiblioteca(BIBLIOTECA *B);
+                        break;
+
+                       case 2:
+                            RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
+                        break;
+
+                       case 3:
+                            ListarClientes(BIBLIOTECA *B);
+                        break;
+
+                       case 4:
+                            ListarLivrosRequesitados(BIBLIOTECA *B);
+                        break;
+
+                       case 5:
+                            ShowBiblioteca(BIBLIOTECA *B);
+                        break;
+
+                       case 6:
+                            DestruirBiblioteca(BIBLIOTECA *B);
+                        break;
+
+                       case 7:
+                            ListarRequesitantes(BIBLIOTECA *B);
+                        break;
+
+                       case 8:
+                            PesquisarRequisitante(BIBLIOTECA *B, int cod);
+                        break;
+
                     }
                 }while (OPA != 0);
             break;
 
 
 
-// -------------------- SEPARAÇÃO MENUS ----------------------
+// -------------------- SEPARAí”ŒO MENUS ----------------------
 // ------------------------ CLIENTE --------------------------
 
 
@@ -182,7 +214,7 @@ int main()
             break;
 
 
-// -------------------- SEPARAÇÃO MENUS ----------------------
+// -------------------- SEPARAí”ŒO MENUS ----------------------
 // ---------------------- BIBLIOTECA -------------------------
 
 
@@ -203,7 +235,7 @@ int main()
             break;
 
 
-// -------------------- SEPARAÇÃO MENUS ----------------------
+// -------------------- SEPARAí”ŒO MENUS ----------------------
 // ------------------------ LIVROS --------------------------
 
 

@@ -22,7 +22,7 @@ BIBLIOTECA *CriarBiblioteca(char *_nome, char *_logs)
     //Bib->LRequisitantes = CriarListaPessoas();
     return Bib;
 }
-
+//------------------------------------------------------------------------------
 /** \brief Funcao para Mostrar toda a Biblioteca
  *
  * \param B BIBLIOTECA* : Pnteiro para a Biblioteca
@@ -41,6 +41,7 @@ void ShowBiblioteca(BIBLIOTECA *B)
 
     fclose(F_Logs);
 }
+//------------------------------------------------------------------------------
 void DestruirBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -54,6 +55,7 @@ void DestruirBiblioteca(BIBLIOTECA *B)
 
     fclose(F_Logs);
 }
+//------------------------------------------------------------------------------
 int LoadFicheiroBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -75,6 +77,7 @@ int LoadFicheiroBiblioteca(BIBLIOTECA *B)
     fclose(F_Logs);
     return EXIT_SUCCESS;
 }
+//------------------------------------------------------------------------------
 int AddLivroBiblioteca(BIBLIOTECA *B, LIVRO *L)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -86,6 +89,7 @@ int AddLivroBiblioteca(BIBLIOTECA *B, LIVRO *L)
     fclose(F_Logs);
     return EXIT_SUCCESS;
 }
+//------------------------------------------------------------------------------
 int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -97,6 +101,26 @@ int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn)
     fclose(F_Logs);
     return EXIT_SUCCESS;
 }
+//------------------------------------------------------------------------------
+int ListarLivrosDaBiblioteca(BIBLIOTECA *B)
+{
+    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
+    time_t now = time(NULL) ;
+   fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    printf("Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+
+
+
+
+
+
+   fprintf(F_Logs, "Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+    printf("Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+    fclose(F_Logs);
+    return NULL;
+
+}
+//------------------------------------------------------------------------------
 LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -108,6 +132,7 @@ LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B)
     fclose(F_Logs);
     return NULL;
 }
+//------------------------------------------------------------------------------
 char *ApelidoMaisComum(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -119,6 +144,7 @@ char *ApelidoMaisComum(BIBLIOTECA *B)
     fclose(F_Logs);
     return NULL;
 }
+//------------------------------------------------------------------------------
 char *AreaMaisComum(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -130,6 +156,7 @@ char *AreaMaisComum(BIBLIOTECA *B)
     fclose(F_Logs);
     return NULL;
 }
+//------------------------------------------------------------------------------
 int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -141,6 +168,7 @@ int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
     fclose(F_Logs);
     return EXIT_SUCCESS;
 }
+//------------------------------------------------------------------------------
 PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -152,3 +180,54 @@ PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod)
     fclose(F_Logs);
     return NULL;
 }
+//------------------------------------------------------------------------------
+int ListarLivrosRequesitados(BIBLIOTECA *B)
+{
+    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
+    time_t now = time(NULL) ;
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+
+    // Aqui o teu codigo
+
+    fclose(F_Logs);
+    return EXIT_SUCCESS;
+}
+//------------------------------------------------------------------------------
+int ListarClientes(BIBLIOTECA *B)
+{
+    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
+    time_t now = time(NULL) ;
+   fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    printf("Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+
+
+
+
+
+
+   fprintf(F_Logs, "Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+    printf("Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+    fclose(F_Logs);
+    return NULL;
+
+}
+//------------------------------------------------------------------------------
+int ListarRequesitantes(BIBLIOTECA *B)
+{
+    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
+    time_t now = time(NULL) ;
+   fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    printf("Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+
+
+
+
+
+
+   fprintf(F_Logs, "Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+    printf("Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+    fclose(F_Logs);
+    return NULL;
+
+}
+//------------------------------------------------------------------------------
