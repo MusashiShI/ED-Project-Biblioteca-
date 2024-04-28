@@ -169,6 +169,30 @@ int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
     return EXIT_SUCCESS;
 }
 //------------------------------------------------------------------------------
+int RequeitarLivro(BIBLIOTECA *B, PESSOA *X)
+{
+    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
+    time_t now = time(NULL) ;
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+
+    // Aqui o teu codigo
+
+    fclose(F_Logs);
+    return EXIT_SUCCESS;
+}
+//------------------------------------------------------------------------------
+int DevolverLivro(BIBLIOTECA *B, PESSOA *X)
+{
+    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
+    time_t now = time(NULL) ;
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+
+    // Aqui o teu codigo
+
+    fclose(F_Logs);
+    return EXIT_SUCCESS;
+}
+//------------------------------------------------------------------------------
 PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");

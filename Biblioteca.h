@@ -27,11 +27,13 @@ void DestruirBiblioteca(BIBLIOTECA *B);
 int LoadFicheiroBiblioteca(BIBLIOTECA *B);
 int AddLivroBiblioteca(BIBLIOTECA *B, LIVRO *L);
 int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
-int ListarLivrosDaBiblioteca(BIBLIOTECA *B)
+int ListarLivrosDaBiblioteca(BIBLIOTECA *B);
 LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B);
 char *ApelidoMaisComum(BIBLIOTECA *B);
 char *AreaMaisComum(BIBLIOTECA *B);
 int AddRequisitante(BIBLIOTECA *B, PESSOA *X);
+int RequeitarLivro(BIBLIOTECA *B, PESSOA *X);
+int DevolverLivro(BIBLIOTECA *B, PESSOA *X);
 PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod);
 int ListarLivrosRequesitados(BIBLIOTECA *B);
 int ListarClientes(BIBLIOTECA *B);
