@@ -12,8 +12,9 @@ typedef struct
 {
     char *NOME;
     char FICHEIRO_LOGS[50];
+    LIVRO *livros;
 
-    HASHING *HLivros;
+    //  HASHING *HLivros;
    // LISTA   *LRequisitantes;
    // LISTA_Requisicoes *LRequisicoes;
 }BIBLIOTECA;
