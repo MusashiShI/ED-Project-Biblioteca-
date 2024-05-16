@@ -2,31 +2,10 @@
 #include <stdlib.h>
 #include <locale.h>
 
-//#include "Lista.h"
-//#include "Hashing.h"
-//#include "Biblioteca.h"
+// #include "livro.h"   TESTES DE CARREGAR E LISTAR LIVROS.
 
-//extern int LerInteiro(char *txt);
 
-// Funções de exemplo para as operações
-/*void Exemplo_Hashing()
-{
-    HASHING *Has = CriarHashing();
-    PESSOA *X = CriarPessoa(1234, "Jose", "CAT-A");
-    AddHashing(Has, X);
-    X = CriarPessoa(567, "Pedro", "CAT-A");
-    AddHashing(Has, X);
-    X = CriarPessoa(456, "Luis", "CAT-A");
-    AddHashing(Has, X);
-    X = CriarPessoa(56, "Miguel", "CAT-B");
-    AddHashing(Has, X);
-    X = CriarPessoa(5690, "James Bond", "CAT-Z");
-    AddHashing(Has, X);
-    ShowHashing(Has);
-
-    DestruirHashing(Has);
-}*/
-
+//----------------------------------------------------------------------------------------------------
 int Menu()
 {
     printf(" ---------------------------\n");
@@ -39,11 +18,11 @@ int Menu()
     printf("| 0- Sair                   |\n");
     printf(" ---------------------------\n");
     int op = 0;
-    printf("Qual a opção? ");
+    printf("Qual a opcao? ");
     scanf("%d", &op);
     return op;
 }
-
+//----------------------------------------------------------------------------------------------------
 int MenuAdm()
 {
     printf("   ---------------------------    \n");
@@ -62,11 +41,11 @@ int MenuAdm()
     printf(" --------------------------------\n");
 
     int opadm = 0;
-    printf("Qual a opção? ");
+    printf("Qual a opcao? ");
     scanf("%d", &opadm);
     return opadm;
 }
-
+//----------------------------------------------------------------------------------------------------
 int Menuclient()
 {
     printf(" ---------------------------\n");
@@ -80,11 +59,11 @@ int Menuclient()
     printf(" ---------------------------\n");
 
     int opclient = 0;
-    printf("Qual a opção? ");
+    printf("Qual a opcao? ");
     scanf("%d", &opclient);
     return opclient;
 }
-
+//----------------------------------------------------------------------------------------------------
 int MenuBiblio()
 {
     printf("      ---------------------------       \n");
@@ -101,11 +80,11 @@ int MenuBiblio()
     printf("| 0- Sair                               |\n");
     printf(" ---------------------------------------\n");
     int opBiblio = 0;
-    printf("Qual a opção? ");
+    printf("Qual a opcao? ");
     scanf("%d", &opBiblio);
     return opBiblio;
 }
-
+//----------------------------------------------------------------------------------------------------
 int MenuLivro()
 {
     printf("     ---------------------------       \n");
@@ -117,17 +96,24 @@ int MenuLivro()
     printf("| 0- Sair                              |\n");
     printf(" --------------------------------------\n");
     int opLivro = 0;
-    printf("Qual a opção? ");
+    printf("Qual a opcao? ");
     scanf("%d", &opLivro);
     return opLivro;
 }
+//----------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+//    void ListarLivros(LIVRO *head);               TESTES DE CARREGAR E LISTAR LIVROS.
+//    char *filename = "livros.txt";                TESTES DE CARREGAR E LISTAR LIVROS.
     printf("Projeto-Biblioteca-Versão-Base!\n");
+//    LIVRO *Livros = CarregarTxtLivro(filename);   TESTES DE CARREGAR E LISTAR LIVROS.
 
-    // Exemplo_Hashing();
     // BIBLIOTECA *Bib;
     // Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
     
@@ -146,7 +132,7 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                            // ListarLivrosDaBiblioteca(Bib);
+                           // ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
                             break;
                         case 2:
                             // RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
@@ -226,7 +212,7 @@ int main()
 
             default:
                 if (OP != 0)
-                    printf("Opção não implementada\n");
+                    printf("opcao não implementada\n");
                 break;
         }
     } while (OP != 0);
