@@ -17,7 +17,7 @@ BIBLIOTECA *CriarBiblioteca(char *_nome, char *_logs)
     Bib->NOME = (char *)malloc((strlen(_nome) + 1) * sizeof(char));
     strcpy(Bib->NOME, _nome);
     strcpy(Bib->FICHEIRO_LOGS, _logs);
-    Bib->HLivros = CriarHashing();
+   // Bib->livros = CriarHashing();
     //Bib->LRequisicoes = CriarListaRequisicoes();
     //Bib->LRequisitantes = CriarListaPessoas();
     return Bib;
@@ -34,10 +34,10 @@ void ShowBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
     printf("NOME BIBLIOTECA = [%s]\n", B->NOME);
     // Vosso Codigo.....
-    ShowHashing(B->HLivros);
+  //  ShowHashing(B->livros);
 
     fclose(F_Logs);
 }
@@ -46,7 +46,7 @@ void DestruirBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Vosso Codigo.....
     free (B->NOME);
@@ -60,29 +60,31 @@ int LoadFicheiroBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Vosso Codigo.....
-    PESSOA *X = CriarPessoa(1234, "Jose", "CAT-A");
-    AddHashing(B->HLivros, X);
+/*    PESSOA *X = CriarPessoa(1234, "Jose", "CAT-A");
+    AddHashing(X, B->P);
     X = CriarPessoa(567, "Pedro", "CAT-A");
-    AddHashing(B->HLivros, X);
+    AddHashing(B->P, X);
     X = CriarPessoa(456, "Luis", "CAT-A");
-    AddHashing(B->HLivros, X);
+    AddHashing(B->P, X);
     X = CriarPessoa(56, "Miguel", "CAT-B");
-    AddHashing(B->HLivros, X);
+    AddHashing(B->P, X);
     X = CriarPessoa(5690, "James Bond", "CAT-Z");
-    AddHashing(B->HLivros, X);
+    AddHashing(B->P, X);
 
     fclose(F_Logs);
+*/
     return EXIT_SUCCESS;
 }
 //------------------------------------------------------------------------------
+/*
 int AddLivroBiblioteca(BIBLIOTECA *B, LIVRO *L)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -94,7 +96,7 @@ int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -102,22 +104,23 @@ int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn)
     return EXIT_SUCCESS;
 }
 //------------------------------------------------------------------------------
+*/
 int ListarLivrosDaBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-   fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
-    printf("Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+   fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
+    printf("Entrei em %s na data %s\n", __func__, ctime(&now));
 
 
 
 
 
 
-   fprintf(F_Logs, "Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
-    printf("Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+   fprintf(F_Logs, "Sai de %s na data %s\n", __func__, ctime(&now));
+    printf("Sai de %s na data %s\n", __func__, ctime(&now));
     fclose(F_Logs);
-    return NULL;
+    return 0;
 
 }
 //------------------------------------------------------------------------------
@@ -125,7 +128,7 @@ LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -137,7 +140,7 @@ char *ApelidoMaisComum(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -149,7 +152,7 @@ char *AreaMaisComum(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -157,11 +160,12 @@ char *AreaMaisComum(BIBLIOTECA *B)
     return NULL;
 }
 //------------------------------------------------------------------------------
+/*
 int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -173,7 +177,7 @@ int RequeitarLivro(BIBLIOTECA *B, PESSOA *X)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -185,7 +189,7 @@ int DevolverLivro(BIBLIOTECA *B, PESSOA *X)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -197,7 +201,7 @@ PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -205,11 +209,12 @@ PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod)
     return NULL;
 }
 //------------------------------------------------------------------------------
+*/
 int ListarLivrosRequesitados(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
     // Aqui o teu codigo
 
@@ -221,18 +226,18 @@ int ListarClientes(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-   fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
-    printf("Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+   fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
+    printf("Entrei em %s na data %s\n", __func__, ctime(&now));
 
 
 
 
 
 
-   fprintf(F_Logs, "Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
-    printf("Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+   fprintf(F_Logs, "Sai de %s na data %s\n", __func__, ctime(&now));
+    printf("Sai de %s na data %s\n", __func__, ctime(&now));
     fclose(F_Logs);
-    return NULL;
+    return 0;
 
 }
 //------------------------------------------------------------------------------
@@ -240,18 +245,19 @@ int ListarRequesitantes(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
     time_t now = time(NULL) ;
-   fprintf(F_Logs, "Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
-    printf("Entrei em %s na data %s\n", __FUNCTION__, ctime(&now));
+   fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
+    printf("Entrei em %s na data %s\n", __func__, ctime(&now));
 
 
 
 
 
 
-   fprintf(F_Logs, "Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
-    printf("Sai de %s na data %s\n", __FUNCTION__, ctime(&now));
+   fprintf(F_Logs, "Sai de %s na data %s\n", __func__, ctime(&now));
+    printf("Sai de %s na data %s\n", __func__, ctime(&now));
     fclose(F_Logs);
-    return NULL;
+
+    return 0;
 
 }
 //------------------------------------------------------------------------------

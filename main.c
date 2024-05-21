@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-
+#include "Listagenerica.h"
 // #include "livro.h"   TESTES DE CARREGAR E LISTAR LIVROS.
 
 
@@ -109,10 +109,9 @@ int MenuLivro()
 
 int main()
 {
-//    void ListarLivros(LIVRO *head);               TESTES DE CARREGAR E LISTAR LIVROS.
-//    char *filename = "livros.txt";                TESTES DE CARREGAR E LISTAR LIVROS.
+
     printf("Projeto-Biblioteca-Versão-Base!\n");
-//    LIVRO *Livros = CarregarTxtLivro(filename);   TESTES DE CARREGAR E LISTAR LIVROS.
+
 
     // BIBLIOTECA *Bib;
     // Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");

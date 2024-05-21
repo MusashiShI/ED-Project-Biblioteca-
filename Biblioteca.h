@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "Pessoa.h"
 #include "Livro.h"
 #include "Lista.h"
 #include "Hashing.h"
@@ -12,6 +13,7 @@ typedef struct
 {
     char *NOME;
     char FICHEIRO_LOGS[50];
+    PESSOA *P;
     LIVRO *livros;
 
     //  HASHING *HLivros;

@@ -6,12 +6,21 @@
 #include <string.h>
 
 
-typedef struct
-{
-    char *NOME;
-    int ID;
+typedef struct {
+    int ano;
+    int mes;
+    int dia;
+} datpub;
+
+typedef struct LIVRO {
+    char isbn[20]; 
+    char *Autor;
+    char *titulo;
     char *AREA;
-}LIVRO;
+    int ID;
+    datpub data;
+    struct LIVRO *next;
+} LIVRO;
 
 LIVRO *CriarLivro(int _id, char *_nome, char *_area);
 void MostrarLivro(LIVRO *P);

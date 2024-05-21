@@ -1,8 +1,9 @@
 
 #include "Lista.h"
+#include "Pessoa.h"
 
 //--------------------------------------------------
-/** \brief Permite alocar memória para uma lista
+/** \brief Permite alocar memï¿½ria para uma lista
  *
  * \return LISTA* : Retorna a lista alocada
  * \date 10/04/2024
@@ -43,7 +44,7 @@ void ShowLista(LISTA *L)
 //--------------------------------------------------
 void DestruirLista(LISTA *L)
 {
-    //printf("Implementar <%s>\n", __FUNCTION__);
+    //printf("Implementar <%s>\n", __func__);
     if (!L) return;
     NO *Martim;
     NO *Helder = L->Inicio;
@@ -60,7 +61,7 @@ void DestruirLista(LISTA *L)
 //--------------------------------------------------
 PESSOA *PesquisarLista(LISTA *L, char *_nome)
 {
-    printf("Implementar <%s>\n", __FUNCTION__);
+    printf("Implementar <%s>\n", __func__);
     if (L == NULL) return NULL;
     NO *P = L->Inicio;
     while (P)
