@@ -20,13 +20,18 @@ PESSOA *CriarPessoa(int _id, char *_nome, char *_categoria)
     P->ID = _id;
     return P;
 }
+
+
 void MostrarPessoa(PESSOA *P)
 {
     printf("\tPESSOA: ID: %d [%s] [%s]\n", P->ID, P->NOME, P->CATEGORIA);
 }
+
+/*
 void DestruirPessoa(PESSOA *P)
 {
     free (P->NOME);
     free (P->CATEGORIA);
     free (P);
 }
+*/

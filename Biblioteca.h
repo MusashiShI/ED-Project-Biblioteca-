@@ -7,14 +7,14 @@
 
 #include "Pessoa.h"
 #include "Livro.h"
-#include "Lista.h"
-#include "Hashing.h"
+#include "Listagenerica.h"
 typedef struct
 {
     char *NOME;
     char FICHEIRO_LOGS[50];
     PESSOA *P;
     LIVRO *livros;
+    ListaGenerica *requesitantes;
 
     //  HASHING *HLivros;
    // LISTA   *LRequisitantes;

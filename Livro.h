@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Listagenerica.h"
 
 
 typedef struct {
@@ -13,16 +14,17 @@ typedef struct {
 } datpub;
 
 typedef struct LIVRO {
-    char isbn[20]; 
+    char *isbn; 
     char *Autor;
     char *titulo;
     char *AREA;
     int ID;
     datpub data;
-    struct LIVRO *next;
+    ListaGenerica *llivro;
 } LIVRO;
 
-LIVRO *CriarLivro(int _id, char *_nome, char *_area);
+int ler_livros(ListaGenerica *lp);
+LIVRO *CriarLivro(char *_isbn, char *_autor, char *_titulo, char *_area, int _id, int _ano, int _mes, int _dia);
 void MostrarLivro(LIVRO *P);
 void DestruirLivro(LIVRO *P);
 

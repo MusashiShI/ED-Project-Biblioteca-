@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <locale.h>
 #include "Listagenerica.h"
-// #include "livro.h"   TESTES DE CARREGAR E LISTAR LIVROS.
+#include "Livro.h"
+
 
 
 //----------------------------------------------------------------------------------------------------
@@ -115,6 +116,7 @@ int main()
 
     // BIBLIOTECA *Bib;
     // Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
+    ListaGenerica *lp = CriarLG();
     
     int OP, OPB, OPL, OPA, OPC;
     do
@@ -131,7 +133,7 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                           // ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
+                            ler_livros(lp);//    MostrarLG(lp);; // ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
                             break;
                         case 2:
                             // RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);

@@ -4,6 +4,8 @@
 
 #include "Listagenerica.h"
 #include "Biblioteca.h"
+#include "Pessoa.h"
+#include "Livro.h"
 
 int Aleatorio(int min, int max)
 {
@@ -21,8 +23,8 @@ ListaGenerica *CriarLG()
 void DestruirLG(ListaGenerica *lg, void (*fdest)(void *))
 {
     if (!lg) return;
-    NOG *P = lg->Inicio;
-    NOG *AUX;
+    NO *P = lg->Inicio;
+    NO *AUX;
     while(P)
     {
         AUX = P->Prox;
@@ -37,7 +39,7 @@ void MostrarLG(ListaGenerica *lg, void (*f)(void *))
 {
     if (!lg) return;
     printf("Numero elementos da Lista: [%d]\n", lg->NEL);
-    NOG *P = lg->Inicio;
+    NO *P = lg->Inicio;
     while(P)
     {
         f(P->Info);
@@ -48,7 +50,7 @@ void MostrarLG(ListaGenerica *lg, void (*f)(void *))
 void AddLG(ListaGenerica *lg, void *X)
 {
     if (!lg || !X) return;
-    NOG *P = (NOG *)malloc(sizeof(NOG));
+    NO *P = (NO *)malloc(sizeof(NO));
     P->Prox = lg->Inicio;
     P->Info = X;
     lg->Inicio = P;
@@ -58,7 +60,7 @@ void AddLG(ListaGenerica *lg, void *X)
 int PertenceLG(ListaGenerica *lg, void *X, int (*fcomp)(void *, void *))
 {
     if (!lg || !X) return INSUCESSO;
-    NOG *P = lg->Inicio;
+    NO *P = lg->Inicio;
     while(P)
     {
         if (fcomp(P->Info, X) == 1) return SUCESSO;
@@ -70,8 +72,8 @@ int PertenceLG(ListaGenerica *lg, void *X, int (*fcomp)(void *, void *))
 int RemoverLG(ListaGenerica *L, void *X, int (*fcomp)(void *, void *), void (*fdest)(void *))
 {
     if(!L || !X) return INSUCESSO;
-    NOG *ANT = NULL;
-    NOG *P = L->Inicio;
+    NO *ANT = NULL;
+    NO *P = L->Inicio;
     int STOP = 0;
     while(P && !STOP)
     {
@@ -103,7 +105,7 @@ size_t MemoriaOcupada(ListaGenerica *lg, size_t (*fmem)(void *X))
 {
     if (!lg) return 0;
     size_t soma_mem = sizeof(*lg);
-    NOG *P = lg->Inicio;
+    NO *P = lg->Inicio;
     while(P)
     {
         soma_mem += sizeof(*P) + fmem(P->Info);
@@ -116,7 +118,7 @@ void *GetElementoPosicao(ListaGenerica *lg, int pos)
 {
     if (!lg) return NULL;
     if ((pos < 0) || (pos >= lg->NEL)) return NULL;
-    NOG *P = lg->Inicio;
+    NO *P = lg->Inicio;
     for (int i = 0; i < pos; i++)
        {
             P = P->Prox;

@@ -9,3 +9,5 @@ Victor Rocha - [pv19544].
 
 
 Open Projecto_ED_23_24.CBP for CodeBlocks Project!!
+Para compilar coloque gcc main.c Livro.c ListaGenerica.c Lista.c -o Edproject no Terminal!!
+

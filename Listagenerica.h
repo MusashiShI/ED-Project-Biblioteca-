@@ -4,21 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//#include "Biblioteca.h"
+//#include "Pessoa.h"
+//#include "Livro.h"
 
 #define INSUCESSO -1
 #define SUCESSO 1
 
 
-typedef struct NOG
+typedef struct NO
 {
     void *Info;   //Informa��o de um n� da lista
-    struct NOG *Prox;   //Ponteiro que aponta para o n� a seguir
-}NOG;
+    struct NO *Prox;   //Ponteiro que aponta para o n� a seguir
+}NO;
 
 typedef struct
 {
     int NEL;    //N�mero de elementos da lista gen�rica
-    NOG *Inicio;  //N� que aponta para o in�cio da lista
+    NO *Inicio;  //N� que aponta para o in�cio da lista
 }ListaGenerica;
 
 //Fun��es relativas � lista gen�rica
