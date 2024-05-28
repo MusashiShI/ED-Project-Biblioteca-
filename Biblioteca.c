@@ -17,7 +17,7 @@ BIBLIOTECA *CriarBiblioteca(char *_nome, char *_logs)
     Bib->NOME = (char *)malloc((strlen(_nome) + 1) * sizeof(char));
     strcpy(Bib->NOME, _nome);
     strcpy(Bib->FICHEIRO_LOGS, _logs);
-   // Bib->livros = CriarHashing();
+    Bib->HLivros = CriarHashing();
     //Bib->LRequisicoes = CriarListaRequisicoes();
     //Bib->LRequisitantes = CriarListaPessoas();
     return Bib;
@@ -74,15 +74,15 @@ int LoadFicheiroBiblioteca(BIBLIOTECA *B)
         char *token = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
         while (token != NULL)
         {
-            printf(" TESTE ");
+
             CAMPOS[i] = token;
             token = strtok (NULL, "\t\n");
             i++;
         }
-        printf(" TESTE ");
+
         LIVRO *L = CriarLivro(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3], atoi(CAMPOS[4]), atoi(CAMPOS[5]), atoi(CAMPOS[6]), atoi(CAMPOS[7])); //atof usa-se em float
         AddHashing(B->HLivros, L);
-        printf(" TESTE %s", L->isbn);
+
     }
     fclose(F);
     printf("Sai da Função %s", __func__);

@@ -61,7 +61,6 @@ void ShowHashing(HASHING *H)
     if (!H) return;
     if (!H->LChaves) return;
     NO_CHAVE *P = H->LChaves->Inicio;
-    printf(" TESTE ");
     while (P)
     {
         printf("Key: [%s]\n", P->KEY);

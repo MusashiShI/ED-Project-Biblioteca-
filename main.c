@@ -116,7 +116,7 @@ int main()
 
      BIBLIOTECA *Bib;
      Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
-
+    LoadFicheiroBiblioteca(Bib);
 
     int OP, OPB, OPL, OPA, OPC;
     do
@@ -133,10 +133,10 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                            LoadFicheiroBiblioteca(Bib);
+                            ShowBiblioteca(Bib);
                             break;
                         case 2:
-                            ShowBiblioteca(Bib);
+
                             break;
                         case 3:
                             // ListarClientes(BIBLIOTECA *B);
