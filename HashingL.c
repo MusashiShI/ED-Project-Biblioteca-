@@ -1,6 +1,6 @@
 
 #include "HashingL.h"
-#include "ListaL.h"
+
 
 LISTA_CHAVES *CriarListaCHAVES()
 {
@@ -17,7 +17,7 @@ NO_CHAVE *AddCHAVE(LISTA_CHAVES *L, char *key)
     NO_CHAVE *aux = (NO_CHAVE *)malloc(sizeof(NO_CHAVE));
     aux->KEY = (char *)malloc((strlen(key) + 1) * sizeof(char));
     strcpy(aux->KEY, key);
-    aux->DADOS = CriarLista();
+    aux->DADOS = CriarListaL();
     aux->Prox = L->Inicio;
     L->Inicio = aux;
     L->NEL++;
@@ -37,7 +37,7 @@ void DestruirHashing(HASHING *H)
     while (P)
     {
         Seguinte = P->Prox;
-        DestruirLista(P->DADOS);
+        DestruirListaL(P->DADOS);
         free (P->KEY);
         free (P);
         P = Seguinte;
@@ -53,7 +53,7 @@ void AddHashing(HASHING *H, LIVRO *L)
     {
         Key_colocar = AddCHAVE(H->LChaves, L->AREA);
     }
-    AddInicio(Key_colocar->DADOS, L);
+    AddInicioL(Key_colocar->DADOS, L);
 }
 
 void ShowHashing(HASHING *H)
@@ -61,10 +61,11 @@ void ShowHashing(HASHING *H)
     if (!H) return;
     if (!H->LChaves) return;
     NO_CHAVE *P = H->LChaves->Inicio;
+    printf(" TESTE ");
     while (P)
     {
         printf("Key: [%s]\n", P->KEY);
-        ShowLista(P->DADOS);
+        ShowListaL(P->DADOS);
         P = P->Prox;
     }
 }

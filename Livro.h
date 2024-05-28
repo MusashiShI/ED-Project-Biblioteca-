@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ListaL.h"
+
 
 
 typedef struct {
@@ -25,7 +25,7 @@ typedef struct LIVRO {
 
 }LIVRO;
 
-// int ler_livros(LISTAL *lp);
+
 LIVRO *CriarLivro(char *_isbn, char *_autor, char *_titulo, char *_area, int _id, int _ano, int _mes, int _dia);
 void MostrarLivro(LIVRO *P);
 void DestruirLivro(LIVRO *P);

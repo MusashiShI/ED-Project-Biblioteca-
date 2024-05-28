@@ -1,43 +1,5 @@
 
 #include "Livro.h"
-/*
-int ler_livros(LISTAL *lp)
-{
-    printf("Entrei na Função %s", __func__);
-    FILE *F = fopen("livros.txt","r"); // FILE *F = fopen(ficheiro,"r");
-    if(!F) return INSUCESSO;
-
-    char BUFFER[1001];
-
-    while(!feof(F))
-    {
-
-        fgets(BUFFER, 1000, F);
-       // printf("Linha [%s] \n",BUFFER);
-        int i = 0;
-        char *CAMPOS[8];
-        char *token = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
-        while (token != NULL)
-        {
-            CAMPOS[i] = token;
-            token = strtok (NULL, "\t\n");
-            i++;
-        }
-
-
-        LIVRO *L = CriarLivro(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3], atoi(CAMPOS[4]), atoi(CAMPOS[5]), atoi(CAMPOS[6]), atoi(CAMPOS[7])); //atof usa-se em float
-        printf("%s\n",L->isbn);
-
-        AddInicio(lp, L);
-    }
-    fclose(F);
-    printf("Sai da Função %s", __func__);
-    return SUCESSO;
-}
-
-
-*/
-
 
 
 LIVRO *CriarLivro(char *_isbn, char *_autor, char *_titulo, char *_area, int _id, int _ano, int _mes, int _dia)
@@ -64,16 +26,16 @@ LIVRO *CriarLivro(char *_isbn, char *_autor, char *_titulo, char *_area, int _id
     return L;
 }
 
-void MostrarLivro(LIVRO *P)
+void MostrarLivro(LIVRO *L)
 {
-    printf("\tPESSOA: ID: %d [%s] [%s]\n", P->ID, P->titulo, P->AREA);
+    printf("\t ISBN: [%s] | AUTOR: [%s] | TITULO: [%s] | AREA: [%s] | ID: %d | DATA %d/%d/%d  \n", L->isbn, L->Autor, L->titulo, L->AREA, L->ID, L->data.dia, L->data.mes, L->data.ano);
 }
-void DestruirLivro(LIVRO *P)
+void DestruirLivro(LIVRO *L)
 {
-    free (P->isbn);
-    free (P->Autor);
-    free (P->titulo);
-    free (P->AREA);
-    free (P);
+    free (L->isbn);
+    free (L->Autor);
+    free (L->titulo);
+    free (L->AREA);
+    free (L);
 }
 

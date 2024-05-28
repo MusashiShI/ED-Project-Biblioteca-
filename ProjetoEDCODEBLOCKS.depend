@@ -1,9 +1,8 @@
 # depslib dependency file v1.0
-1716830376 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\hashingl.c
+1716890494 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\hashingl.c
 	"HashingL.h"
-	"ListaL.h"
 
-1716830376 c:\users\raitsu\desktop\work\projetoedcodeblocks\hashingl.h
+1716886899 c:\users\raitsu\desktop\work\projetoedcodeblocks\hashingl.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -14,13 +13,12 @@
 	<stdlib.h>
 	"Livro.h"
 
-1716831712 c:\users\raitsu\desktop\work\projetoedcodeblocks\livro.h
+1716886739 c:\users\raitsu\desktop\work\projetoedcodeblocks\livro.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	"ListaL.h"
 
-1716830582 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\listal.c
+1716886015 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\listal.c
 	"ListaL.h"
 
 1716830376 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\pessoa.c
@@ -31,7 +29,7 @@
 	<stdlib.h>
 	<string.h>
 
-1716884238 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\main.c
+1716890775 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
@@ -47,4 +45,20 @@
 	"Livro.h"
 	"ListaL.h"
 	"HashingL.h"
+
+1716890887 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\biblioteca.c
+	"Biblioteca.h"
+
+1716890637 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\livro.c
+	"Livro.h"
+
+1716884261 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\requesicao.c
+	"Requesicao.h"
+
+1716830371 c:\users\raitsu\desktop\work\projetoedcodeblocks\requesicao.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Pessoa.h"
+	"Livro.h"
 

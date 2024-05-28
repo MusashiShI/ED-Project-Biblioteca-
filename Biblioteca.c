@@ -59,26 +59,11 @@ void DestruirBiblioteca(BIBLIOTECA *B)
 int LoadFicheiroBiblioteca(BIBLIOTECA *B)
 {
 
- /*
-    LIVRO *X = CriarLivro(1234, "Jose", "CAT-A");
-    AddHashing(X, B->P);
-    X = CriarPessoa(567, "Pedro", "CAT-A");
-    AddHashing(B->P, X);
-    X = CriarPessoa(456, "Luis", "CAT-A");
-    AddHashing(B->P, X);
-    X = CriarPessoa(56, "Miguel", "CAT-B");
-    AddHashing(B->P, X);
-    X = CriarPessoa(5690, "James Bond", "CAT-Z");
-    AddHashing(B->P, X);
-
-    fclose(F_Logs);
-*/
    printf("Entrei na Função %s", __func__);
     FILE *F = fopen("livros.txt","r"); // FILE *F = fopen(ficheiro,"r");
     if(!F) return 0;
 
     char BUFFER[1001];
-
     while(!feof(F))
     {
 
@@ -89,15 +74,15 @@ int LoadFicheiroBiblioteca(BIBLIOTECA *B)
         char *token = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
         while (token != NULL)
         {
+            printf(" TESTE ");
             CAMPOS[i] = token;
             token = strtok (NULL, "\t\n");
             i++;
         }
-
-
+        printf(" TESTE ");
         LIVRO *L = CriarLivro(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3], atoi(CAMPOS[4]), atoi(CAMPOS[5]), atoi(CAMPOS[6]), atoi(CAMPOS[7])); //atof usa-se em float
         AddHashing(B->HLivros, L);
-
+        printf(" TESTE %s", L->isbn);
     }
     fclose(F);
     printf("Sai da Função %s", __func__);
@@ -130,24 +115,6 @@ int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn)
 }
 //------------------------------------------------------------------------------
 */
-int ListarLivrosDaBiblioteca(BIBLIOTECA *B)
-{
-    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
-    time_t now = time(NULL) ;
-   fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
-    printf("Entrei em %s na data %s\n", __func__, ctime(&now));
-
-
-
-
-
-
-   fprintf(F_Logs, "Sai de %s na data %s\n", __func__, ctime(&now));
-    printf("Sai de %s na data %s\n", __func__, ctime(&now));
-    fclose(F_Logs);
-    return 0;
-
-}
 //------------------------------------------------------------------------------
 LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B)
 {

@@ -36,7 +36,7 @@ void ShowListaL(LISTAL *L)
     NO *P = L->Inicio;
     while (P != NULL)
     {
-        MostrarPessoa(P->Info);
+        MostrarLivro(P->Info);
         P = P->Prox;
     }
 }
