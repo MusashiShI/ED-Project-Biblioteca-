@@ -36,8 +36,8 @@ void ShowBiblioteca(BIBLIOTECA *B)
     time_t now = time(NULL) ;
     fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
     printf("NOME BIBLIOTECA = [%s]\n", B->NOME);
-    // Vosso Codigo.....
-  //  ShowHashing(B->livros);
+
+    ShowHashing(B->HLivros);
 
     fclose(F_Logs);
 }
@@ -58,12 +58,9 @@ void DestruirBiblioteca(BIBLIOTECA *B)
 //------------------------------------------------------------------------------
 int LoadFicheiroBiblioteca(BIBLIOTECA *B)
 {
-    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
-    time_t now = time(NULL) ;
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
-    // Vosso Codigo.....
-/*    PESSOA *X = CriarPessoa(1234, "Jose", "CAT-A");
+ /*
+    LIVRO *X = CriarLivro(1234, "Jose", "CAT-A");
     AddHashing(X, B->P);
     X = CriarPessoa(567, "Pedro", "CAT-A");
     AddHashing(B->P, X);
@@ -76,7 +73,35 @@ int LoadFicheiroBiblioteca(BIBLIOTECA *B)
 
     fclose(F_Logs);
 */
-    return EXIT_SUCCESS;
+   printf("Entrei na Função %s", __func__);
+    FILE *F = fopen("livros.txt","r"); // FILE *F = fopen(ficheiro,"r");
+    if(!F) return 0;
+
+    char BUFFER[1001];
+
+    while(!feof(F))
+    {
+
+        fgets(BUFFER, 1000, F);
+       // printf("Linha [%s] \n",BUFFER);
+        int i = 0;
+        char *CAMPOS[8];
+        char *token = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
+        while (token != NULL)
+        {
+            CAMPOS[i] = token;
+            token = strtok (NULL, "\t\n");
+            i++;
+        }
+
+
+        LIVRO *L = CriarLivro(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3], atoi(CAMPOS[4]), atoi(CAMPOS[5]), atoi(CAMPOS[6]), atoi(CAMPOS[7])); //atof usa-se em float
+        AddHashing(B->HLivros, L);
+
+    }
+    fclose(F);
+    printf("Sai da Função %s", __func__);
+    return 1;
 }
 //------------------------------------------------------------------------------
 /*

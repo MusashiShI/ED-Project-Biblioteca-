@@ -1,28 +1,32 @@
 #ifndef LIVRO_H_INCLUDED
 #define LIVRO_H_INCLUDED
 
+#define INSUCESSO -1
+#define SUCESSO 1
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ListaL.h"
 
 
 typedef struct {
     int ano;
     int mes;
     int dia;
-} datpub;
+}datpub;
 
 typedef struct LIVRO {
-    char isbn[20]; 
+    char *isbn;
     char *Autor;
     char *titulo;
     char *AREA;
     int ID;
     datpub data;
-    struct LIVRO *next;
-} LIVRO;
 
-LIVRO *CriarLivro(int _id, char *_nome, char *_area);
+}LIVRO;
+
+// int ler_livros(LISTAL *lp);
+LIVRO *CriarLivro(char *_isbn, char *_autor, char *_titulo, char *_area, int _id, int _ano, int _mes, int _dia);
 void MostrarLivro(LIVRO *P);
 void DestruirLivro(LIVRO *P);
 

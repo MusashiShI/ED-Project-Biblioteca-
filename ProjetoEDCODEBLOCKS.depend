@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1716830376 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\hashingl.c
+	"HashingL.h"
+	"ListaL.h"
+
+1716830376 c:\users\raitsu\desktop\work\projetoedcodeblocks\hashingl.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ListaL.h"
+
+1716830781 c:\users\raitsu\desktop\work\projetoedcodeblocks\listal.h
+	<stdio.h>
+	<stdlib.h>
+	"Livro.h"
+
+1716831712 c:\users\raitsu\desktop\work\projetoedcodeblocks\livro.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ListaL.h"
+
+1716830582 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\listal.c
+	"ListaL.h"
+
+1716830376 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\pessoa.c
+	"Pessoa.h"
+
+1716830324 c:\users\raitsu\desktop\work\projetoedcodeblocks\pessoa.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1716884238 source:c:\users\raitsu\desktop\work\projetoedcodeblocks\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"ListaL.h"
+	"HashingL.h"
+	"Biblioteca.h"
+
+1716831715 c:\users\raitsu\desktop\work\projetoedcodeblocks\biblioteca.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"Pessoa.h"
+	"Livro.h"
+	"ListaL.h"
+	"HashingL.h"
+

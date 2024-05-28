@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "Listagenerica.h"
-// #include "livro.h"   TESTES DE CARREGAR E LISTAR LIVROS.
+#include "ListaL.h"
+#include "HashingL.h"
+#include "Biblioteca.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ int MenuBiblio()
     printf("| 2- Remover livro                      |\n");
     printf("| 3- Listar livros                      |\n");
     printf("| 4- Determinar area com mais livros    |\n");
-    printf("| 5- Verificar existÃªncia de um livro   |\n");
+    printf("| 5- Verificar existência de um livro   |\n");
     printf("| 6- Livro mais requesitado             |\n");
     printf("| 7- Livro mais recente                 |\n");
     printf("| 8- Area mais requesitada              |\n");
@@ -92,7 +93,7 @@ int MenuLivro()
     printf("     ---------------------------       \n");
     printf("| 1- Pesquisar Livro                   |\n");
     printf("| 2- Registrar Livro                   |\n");
-    printf("| 3- Verificar ExistÃªncia de Livro     |\n");
+    printf("| 3- Verificar Existência de Livro     |\n");
     printf("| 0- Sair                              |\n");
     printf(" --------------------------------------\n");
     int opLivro = 0;
@@ -110,12 +111,12 @@ int MenuLivro()
 int main()
 {
 
-    printf("Projeto-Biblioteca-VersÃ£o-Base!\n");
+    printf("Projeto-Biblioteca-Versão-Base!\n");
 
 
-    // BIBLIOTECA *Bib;
-    // Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
-    
+     BIBLIOTECA *Bib;
+     Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
+
     int OP, OPB, OPL, OPA, OPC;
     do
     {
@@ -131,10 +132,10 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                           // ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
+                            LoadFicheiroBiblioteca(Bib);// ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
                             break;
                         case 2:
-                            // RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
+                            ShowBiblioteca(Bib);// RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
                             break;
                         case 3:
                             // ListarClientes(BIBLIOTECA *B);
@@ -211,7 +212,7 @@ int main()
 
             default:
                 if (OP != 0)
-                    printf("opcao nÃ£o implementada\n");
+                    printf("opcao não implementada\n");
                 break;
         }
     } while (OP != 0);
