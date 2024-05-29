@@ -24,10 +24,11 @@ typedef struct
 
 
 BIBLIOTECA *CriarBiblioteca(char *_nome, char *_logs);
+void ShowLBiblioteca(BIBLIOTECA *B);
 void ShowBiblioteca(BIBLIOTECA *B);
 void DestruirBiblioteca(BIBLIOTECA *B);
 int LoadFicheiroBiblioteca(BIBLIOTECA *B);
-int AddLivroBiblioteca(BIBLIOTECA *B, LIVRO *L);
+int AddLivroBiblioteca(BIBLIOTECA *B);
 int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
 int ListarLivrosDaBiblioteca(BIBLIOTECA *B);
 LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B);

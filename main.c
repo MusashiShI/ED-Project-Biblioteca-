@@ -9,6 +9,7 @@
 //----------------------------------------------------------------------------------------------------
 int Menu()
 {
+    printf("\n");
     printf(" ---------------------------\n");
     printf("|        MENU GERAL         |\n");
     printf(" ---------------------------\n");
@@ -26,11 +27,12 @@ int Menu()
 //----------------------------------------------------------------------------------------------------
 int MenuAdm()
 {
+    printf("\n");
     printf("   ---------------------------    \n");
     printf("  |       ADMINISTRACAO       |   \n");
     printf("   ---------------------------    \n");
     printf("| 1- Listar Livro                |\n");
-    printf("| 2- Remover Livro               |\n");
+    printf("| 2- Adicionar Livro             |\n");
     printf("| 3- Listar Clientes             |\n");
     printf("| 4- Listar Livros Requesitados  |\n");
     printf("| 5- Mostrar Biblioteca          |\n");
@@ -49,6 +51,7 @@ int MenuAdm()
 //----------------------------------------------------------------------------------------------------
 int Menuclient()
 {
+    printf("\n");
     printf(" ---------------------------\n");
     printf("|          CLIENTE          |\n");
     printf(" ---------------------------\n");
@@ -67,6 +70,7 @@ int Menuclient()
 //----------------------------------------------------------------------------------------------------
 int MenuBiblio()
 {
+    printf("\n");
     printf("      ---------------------------       \n");
     printf("     |          BIBLIOTECA       |      \n");
     printf("      ---------------------------       \n");
@@ -88,6 +92,7 @@ int MenuBiblio()
 //----------------------------------------------------------------------------------------------------
 int MenuLivro()
 {
+    printf("\n");
     printf("     ---------------------------       \n");
     printf("    |           LIVRO           |      \n");
     printf("     ---------------------------       \n");
@@ -133,10 +138,10 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                            ShowBiblioteca(Bib);
+                            ShowLBiblioteca(Bib);
                             break;
                         case 2:
-
+                            AddLivroBiblioteca(Bib);
                             break;
                         case 3:
                             // ListarClientes(BIBLIOTECA *B);

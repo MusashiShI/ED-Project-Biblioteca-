@@ -30,6 +30,8 @@ void MostrarLivro(LIVRO *L)
 {
     printf("\t ISBN: [%s] | AUTOR: [%s] | TITULO: [%s] | AREA: [%s] | ID: %d | DATA %d/%d/%d  \n", L->isbn, L->Autor, L->titulo, L->AREA, L->ID, L->data.dia, L->data.mes, L->data.ano);
 }
+
+
 void DestruirLivro(LIVRO *L)
 {
     free (L->isbn);
