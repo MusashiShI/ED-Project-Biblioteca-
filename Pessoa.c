@@ -10,23 +10,24 @@
  * \return PESSOA*
  *
  */
-PESSOA *CriarPessoa(int _id, char *_nome, char *_categoria)
+PESSOA *CriarPessoa(int _id, char *_nome, char *_datan, int _idfreg)
 {
     PESSOA *P = (PESSOA *)malloc(sizeof(PESSOA));
-    P->NOME = (char *)malloc((strlen(_nome) + 1)*sizeof(char));
-    strcpy(P->NOME, _nome);
-    P->CATEGORIA = (char *)malloc((strlen(_categoria) + 1)*sizeof(char));
-    strcpy(P->CATEGORIA, _categoria);
+    P->nome = (char *)malloc((strlen(_nome) + 1)*sizeof(char));
+    strcpy(P->nome, _nome);
+    P->datan = (char *)malloc((strlen(_datan) + 1)*sizeof(char));
+    strcpy(P->datan, _datan);
     P->ID = _id;
+    P->idfreg = _idfreg;
     return P;
 }
 void MostrarPessoa(PESSOA *P)
 {
-    printf("\tPESSOA: ID: %d [%s] [%s]\n", P->ID, P->NOME, P->CATEGORIA);
+    printf("\tID: %d | PESSOA: [%s] | DATA DE NASCIMENTO: [%s] | ID Freguesia: [%s]\n", P->ID, P->nome, P->datan, P->idfreg);
 }
 void DestruirPessoa(PESSOA *P)
 {
-    free (P->NOME);
-    free (P->CATEGORIA);
+    free (P->nome);
+    free (P->datan);
     free (P);
 }

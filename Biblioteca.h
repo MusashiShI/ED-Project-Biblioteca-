@@ -7,30 +7,38 @@
 
 #include "Pessoa.h"
 #include "Livro.h"
-#include "Lista.h"
-#include "Hashing.h"
+#include "ListaL.h"
+#include "ListaP.h"
+#include "HashingL.h"
+#include "HashingP.h"
+
+
 typedef struct
 {
     char *NOME;
     char FICHEIRO_LOGS[50];
-    PESSOA *P;
-    LIVRO *livros;
+    HASHING *HLivros;
+    HASHINGP *HPessoas;
 
-    //  HASHING *HLivros;
-   // LISTA   *LRequisitantes;
    // LISTA_Requisicoes *LRequisicoes;
 }BIBLIOTECA;
 
-//adicionar uma quantidade de clientes e detalhes dos mesmos para poderem ser listados.
+
 
 
 BIBLIOTECA *CriarBiblioteca(char *_nome, char *_logs);
+void ShowLBiblioteca(BIBLIOTECA *B);
+void ShowPBiblioteca(BIBLIOTECA *B);
 void ShowBiblioteca(BIBLIOTECA *B);
 void DestruirBiblioteca(BIBLIOTECA *B);
+
 int LoadFicheiroBiblioteca(BIBLIOTECA *B);
-int AddLivroBiblioteca(BIBLIOTECA *B, LIVRO *L);
+int LoadFicheiroBibliotecaPessoas(BIBLIOTECA *B);
+
+int AddLivroBiblioteca(BIBLIOTECA *B);
 int RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
 int ListarLivrosDaBiblioteca(BIBLIOTECA *B);
+
 LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B);
 char *ApelidoMaisComum(BIBLIOTECA *B);
 char *AreaMaisComum(BIBLIOTECA *B);

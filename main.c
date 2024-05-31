@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "Listagenerica.h"
-// #include "livro.h"   TESTES DE CARREGAR E LISTAR LIVROS.
+#include "ListaL.h"
+#include "ListaP.h"
+#include "HashingL.h"
+#include "HashingP.h"
+#include "Biblioteca.h"
 
 
 //----------------------------------------------------------------------------------------------------
 int Menu()
 {
+    printf("\n");
     printf(" ---------------------------\n");
     printf("|        MENU GERAL         |\n");
     printf(" ---------------------------\n");
@@ -25,11 +29,12 @@ int Menu()
 //----------------------------------------------------------------------------------------------------
 int MenuAdm()
 {
+    printf("\n");
     printf("   ---------------------------    \n");
     printf("  |       ADMINISTRACAO       |   \n");
     printf("   ---------------------------    \n");
-    printf("| 1- Listar Livro                |\n");
-    printf("| 2- Remover Livro               |\n");
+    printf("| 1- Listar Livros               |\n");
+    printf("| 2- Adicionar Livro             |\n");
     printf("| 3- Listar Clientes             |\n");
     printf("| 4- Listar Livros Requesitados  |\n");
     printf("| 5- Mostrar Biblioteca          |\n");
@@ -48,6 +53,7 @@ int MenuAdm()
 //----------------------------------------------------------------------------------------------------
 int Menuclient()
 {
+    printf("\n");
     printf(" ---------------------------\n");
     printf("|          CLIENTE          |\n");
     printf(" ---------------------------\n");
@@ -66,6 +72,7 @@ int Menuclient()
 //----------------------------------------------------------------------------------------------------
 int MenuBiblio()
 {
+    printf("\n");
     printf("      ---------------------------       \n");
     printf("     |          BIBLIOTECA       |      \n");
     printf("      ---------------------------       \n");
@@ -73,7 +80,7 @@ int MenuBiblio()
     printf("| 2- Remover livro                      |\n");
     printf("| 3- Listar livros                      |\n");
     printf("| 4- Determinar area com mais livros    |\n");
-    printf("| 5- Verificar existÃªncia de um livro   |\n");
+    printf("| 5- Verificar existência de um livro   |\n");
     printf("| 6- Livro mais requesitado             |\n");
     printf("| 7- Livro mais recente                 |\n");
     printf("| 8- Area mais requesitada              |\n");
@@ -87,12 +94,13 @@ int MenuBiblio()
 //----------------------------------------------------------------------------------------------------
 int MenuLivro()
 {
+    printf("\n");
     printf("     ---------------------------       \n");
     printf("    |           LIVRO           |      \n");
     printf("     ---------------------------       \n");
     printf("| 1- Pesquisar Livro                   |\n");
     printf("| 2- Registrar Livro                   |\n");
-    printf("| 3- Verificar ExistÃªncia de Livro     |\n");
+    printf("| 3- Verificar Existência de Livro     |\n");
     printf("| 0- Sair                              |\n");
     printf(" --------------------------------------\n");
     int opLivro = 0;
@@ -110,12 +118,14 @@ int MenuLivro()
 int main()
 {
 
-    printf("Projeto-Biblioteca-VersÃ£o-Base!\n");
+    printf("Projeto-Biblioteca-Versão-Base!\n");
 
 
-    // BIBLIOTECA *Bib;
-    // Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
-    
+     BIBLIOTECA *Bib;
+     Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
+     LoadFicheiroBiblioteca(Bib);
+     LoadFicheiroBibliotecaPessoas(Bib);
+
     int OP, OPB, OPL, OPA, OPC;
     do
     {
@@ -131,19 +141,19 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                           // ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
+                            ShowLBiblioteca(Bib);
                             break;
                         case 2:
-                            // RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
+                            AddLivroBiblioteca(Bib);
                             break;
                         case 3:
-                            // ListarClientes(BIBLIOTECA *B);
+                            ShowPBiblioteca(Bib);
                             break;
                         case 4:
                             // ListarLivrosRequesitados(BIBLIOTECA *B);
                             break;
                         case 5:
-                            // ShowBiblioteca(BIBLIOTECA *B);
+                            ShowBiblioteca(Bib);
                             break;
                         case 6:
                             // DestruirBiblioteca(BIBLIOTECA *B);
@@ -203,15 +213,16 @@ int main()
                     switch (OPL)
                     {
                         case 1:
-                            // Pesquisar Livro
+
                             break;
+
                     }
                 } while (OPL != 0);
                 break;
 
             default:
                 if (OP != 0)
-                    printf("opcao nÃ£o implementada\n");
+                    printf("opcao não implementada\n");
                 break;
         }
     } while (OP != 0);
