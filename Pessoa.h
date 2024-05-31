@@ -8,13 +8,13 @@
 
 typedef struct
 {
-    int ID;
+    char *ID;
     char *nome;
     char *datan;
-    int idfreg;
+    char *idfreg;
 }PESSOA;
 
-PESSOA *CriarPessoa(int _id, char *_nome, char *_datan, int _idfreg);
+PESSOA *CriarPessoa(char *_id, char *_nome, char *_datan, char *_idfreg);
 void MostrarPessoa(PESSOA *P);
 void DestruirPessoa(PESSOA *P);
 

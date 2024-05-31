@@ -93,3 +93,87 @@
 	<string.h>
 	"ListaP.h"
 
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\biblioteca.c
+	"Biblioteca.h"
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\biblioteca.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"Pessoa.h"
+	"Livro.h"
+	"ListaL.h"
+	"ListaP.h"
+	"HashingL.h"
+	"HashingP.h"
+
+1717150395 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\pessoa.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\livro.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\listal.h
+	<stdio.h>
+	<stdlib.h>
+	"Livro.h"
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\listap.h
+	<stdio.h>
+	<stdlib.h>
+	"Pessoa.h"
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\hashingl.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ListaL.h"
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\hashingp.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ListaP.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\hashingl.c
+	"HashingL.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\hashingp.c
+	"HashingP.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\listal.c
+	"ListaL.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\listap.c
+	"ListaP.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\livro.c
+	"Livro.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"ListaL.h"
+	"ListaP.h"
+	"HashingL.h"
+	"HashingP.h"
+	"Biblioteca.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\pessoa.c
+	"Pessoa.h"
+
+1717148067 source:c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\requesicao.c
+	"Requesicao.h"
+
+1717148067 c:\users\raitsu\desktop\work\ed-project-biblioteca--edprocject-hashing-dos-livros-e-pessoas-\requesicao.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Pessoa.h"
+	"Livro.h"
+

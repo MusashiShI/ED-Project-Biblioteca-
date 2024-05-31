@@ -148,8 +148,7 @@ int LoadFicheiroBibliotecaPessoas(BIBLIOTECA *B)
          printf(" 4 ");
         }
          printf(" 5 ");
-        PESSOA *P = CriarPessoa(atoi(CAMPOS[0]), CAMPOS[1], CAMPOS[2], atoi(CAMPOS[3]));
-        printf("%d", B->HPessoas->PChaves->Inicio->DADOS->Inicio->Info->idfreg);
+        PESSOA *P = CriarPessoa(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3]);
         printf(" 6 ");
         AddHashingp(B->HPessoas, P);
 
