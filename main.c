@@ -210,6 +210,9 @@ int main()
                         case 2:
                             // Remover livro
                             break;
+                        case 7:
+                            LivrosMaisRecentes(Bib->HLivros);
+                            break;
                     }
                 } while (OPB != 0);
                 break;
@@ -226,7 +229,8 @@ int main()
                                 limparBuffer();
                                 fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
                                 isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
-                                PesquisarListaL(Bib->HLivros->LChaves->Inicio->DADOS, isbnProcurado);
+                                EncontrarLivroPorISBN(Bib, isbnProcurado);
+
                                 break;
                         break;
 

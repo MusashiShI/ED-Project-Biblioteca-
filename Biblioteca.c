@@ -202,7 +202,7 @@ int AddLivroBiblioteca(BIBLIOTECA *B)
         fgets(buffer, sizeof(buffer), stdin);
         sscanf(buffer, "%d", &ID);
         if (IDExiste(B->HLivros, ID)) {
-            printf("ID já existe! Por favor, insira um ID único.\n");
+            printf("ID ja existe! Por favor, insira um ID unico.\n");
         }
     } while (IDExiste(B->HLivros, ID));
 
@@ -221,7 +221,7 @@ int AddLivroBiblioteca(BIBLIOTECA *B)
         sscanf(buffer, "%d", &dia);
 
         if (!DataValida(ano, mes, dia)) {
-            printf("Data inválida! Por favor, insira uma data válida.\n");
+            printf("Data invalida! Por favor, insira uma data valida.\n");
         }
     } while (!DataValida(ano, mes, dia));
 
@@ -279,29 +279,7 @@ char *ApelidoMaisComum(BIBLIOTECA *B)
     return NULL;
 }
 //------------------------------------------------------------------------------
-/*
-void *AreaMaisComum(LISTAL *L, char *_area) {
-    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
-    time_t now = time(NULL);
-    fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
-
-    printf("Implementar <%s>\n", __func__);
-    if (L == NULL) return NULL;
-    NO *P = L->Inicio;
-    while (P)
-    {
-        if (stricmp(P->Info->AREA, _area) == 0)
-            return P->Info;
-        P = P->Prox;
-    }
-
-
-
-    fclose(F_Logs);
-    return NULL;
-}
-*/
 //------------------------------------------------------------------------------
 /*
 int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
@@ -432,7 +410,7 @@ void CategoriaMaisLivros(HASHING *H) {
     }
 
     if (categoriaMaisLivros) {
-        printf("A categoria com mais livros é [%s] com [%d] livros.\n", categoriaMaisLivros->KEY, maxLivros);
+        printf("A categoria com mais livros: [%s] com [%d] livros.\n", categoriaMaisLivros->KEY, maxLivros);
     } else {
         printf("Nenhuma categoria encontrada.\n");
     }
@@ -479,30 +457,30 @@ void LivrosMaisRecentes(HASHING *H) {
     DestruirListaL(livrosRecentes);
 }
 
-
+//---------------------------------------------------------------------------------------
 
 LIVRO* EncontrarLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
     if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
         return NULL;
 
-    NO *P = Bib->HLivros->LChaves->Inicio;
-
-    while (P)
-    {
-        printf("Comparando '%s' com '%s'\n", P->Info->isbn, _isbn);
-        if (strcmp(P->Info->isbn, _isbn) == 0)
-        {
-            MostrarLivro(P->Info);
-            return P->Info; // Saímos da função porque encontramos o ISBN
+    NO_CHAVE *chaveAtual = Bib->HLivros->LChaves->Inicio;
+    while (chaveAtual) {
+        NO *P = chaveAtual->DADOS->Inicio;
+        while (P) {
+            if (strcmp(P->Info->isbn, _isbn) == 0) {
+                MostrarLivro(P->Info);
+                return P->Info; // Saímos da função porque encontramos o ISBN
+            }
+            P = P->Prox;
         }
-        P = P->Prox;
+        chaveAtual = chaveAtual->Prox;
     }
 
     printf("Livro com ISBN '%s' não encontrado.\n", _isbn);
     return NULL;
 }
 
-
+//---------------------------------------------------------------------------------------
 int IDExiste(HASHING *H, int ID) {
     NO_CHAVE *P = H->LChaves->Inicio;
     while (P) {
