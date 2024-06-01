@@ -35,13 +35,13 @@ int MenuAdm()
     printf("   ---------------------------    \n");
     printf("| 1- Listar Livros               |\n");
     printf("| 2- Adicionar Livro             |\n");
-    printf("| 3- Listar Clientes             |\n");
-    printf("| 4- Categoria com Mais Livros   |\n");
-    printf("| 5- Mostrar Biblioteca          |\n");
-    printf("| 6- Destruir Biblioteca         |\n");
-    printf("| 7- Verificar Memoria           |\n");
-    printf("| 8- Listar Requesitantes        |\n");
-    printf("| 9- Pesquisar Requesitante      |\n");
+    printf("| 3- Categoria com Mais Livros   |\n");
+    printf("| 4- Listar Livros Requesitados  |\n");
+    printf("| 5- Listar Clientes             |\n");
+    printf("| 6- Pesquisar Clientes          |\n");
+    printf("| 7- Mostrar Biblioteca          |\n");
+    printf("| 8- Verificar Memoria           |\n");
+    printf("| 9- Destruir Biblioteca         |\n");
     printf("| 0- Sair                        |\n");
     printf(" --------------------------------\n");
 
@@ -150,28 +150,29 @@ int main()
                             AddLivroBiblioteca(Bib);
                             break;
                         case 3:
-                            ShowPBiblioteca(Bib);
+                            CategoriaMaisLivros(Bib->HLivros);
                             break;
                         case 4:
-                           CategoriaMaisLivros(Bib->HLivros);
+                          // ListarLivros Requesitados
                             break;
                         case 5:
-                            ShowBiblioteca(Bib);
+                            ShowPBiblioteca(Bib);
                             break;
                         case 6:
-                            // DestruirBiblioteca(BIBLIOTECA *B);
+                                printf("\nColoque o ID da Pessoa que deseja pesquisar: ");
+                                limparBuffer();
+                                fgets(_idproc, sizeof(_idproc), stdin);
+                                _idproc[strcspn(_idproc, "\n")] = '\0'; // Remove o newline no final
+                                EncontrarPessoaPorID(Bib, _idproc);
                             break;
                         case 7:
-                          //  memoriaOcupada();
+                                ShowBiblioteca(Bib);
                             break;
                         case 8:
                             // PesquisarRequisitante(BIBLIOTECA *B, int cod);
                             break;
                         case 9:
-                            printf("\nColoque o ID da pessoa  que deseja pesquisar: ");
-                            limparBuffer();
-                            fgets(_idproc, sizeof(_idproc), stdin);
-                            PesquisarListaP(Bib->HPessoas->PChaves->Inicio->DADOS, _idproc);
+
                             break;
                     }
                 } while (OPA != 0);
@@ -231,7 +232,19 @@ int main()
                                 isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
                                 EncontrarLivroPorISBN(Bib, isbnProcurado);
 
-                                break;
+
+                        break;
+
+
+                        case 2:
+                            AddLivroBiblioteca(Bib);
+                        break;
+                        case 3:
+                                printf("\nColoque o ISBN do livro que deseja ver se existe: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
+                                ExistenciaDoLivroPorISBN(Bib, isbnProcurado);
                         break;
 
                     }

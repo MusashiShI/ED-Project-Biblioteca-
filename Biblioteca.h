@@ -55,6 +55,8 @@ int ContarLivros(LISTAL *L);
 void CategoriaMaisLivros(HASHING *H);
 void LivrosMaisRecentes(HASHING *H);
 LIVRO* EncontrarLivroPorISBN(BIBLIOTECA *Bib, char *_isbn);
+LIVRO* ExistenciaDoLivroPorISBN(BIBLIOTECA *Bib, char *_isbn);
+PESSOA* EncontrarPessoaPorID(BIBLIOTECA *Bib, char *_id);
 int DataValida(int ano, int mes, int dia);
 int IDExiste(HASHING *H, int ID);
 #endif // BIBLIOTECA_H_INCLUDED

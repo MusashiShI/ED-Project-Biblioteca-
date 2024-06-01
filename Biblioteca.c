@@ -394,6 +394,7 @@ int ContarLivros(LISTAL *L) {
 
 // Função para encontrar a categoria com mais livros
 void CategoriaMaisLivros(HASHING *H) {
+
     if (!H || !H->LChaves) return;
 
     NO_CHAVE *P = H->LChaves->Inicio;
@@ -479,8 +480,51 @@ LIVRO* EncontrarLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
     printf("Livro com ISBN '%s' não encontrado.\n", _isbn);
     return NULL;
 }
+//---------------------------------------------------------------------------------------
+LIVRO* ExistenciaDoLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
+    if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
+        return NULL;
+
+    NO_CHAVE *chaveAtual = Bib->HLivros->LChaves->Inicio;
+    while (chaveAtual) {
+        NO *P = chaveAtual->DADOS->Inicio;
+        while (P) {
+            if (strcmp(P->Info->isbn, _isbn) == 0) {
+                printf("\n Livro Existe: ");
+                MostrarLivro(P->Info);
+                return P->Info; // Saímos da função porque encontramos o ISBN
+            }
+            P = P->Prox;
+        }
+        chaveAtual = chaveAtual->Prox;
+    }
+
+    printf("Livro com ISBN '%s' não encontrado.\n", _isbn);
+    return NULL;
+}
 
 //---------------------------------------------------------------------------------------
+PESSOA* EncontrarPessoaPorID(BIBLIOTECA *Bib, char *_id) {
+    if (Bib == NULL || Bib->HPessoas == NULL || Bib->HPessoas->PChaves == NULL || Bib->HPessoas->PChaves->Inicio == NULL)
+        return NULL;
+
+    NO_CHAVEp *chaveAtual = Bib->HPessoas->PChaves->Inicio;
+    while (chaveAtual) {
+        NOp *P = chaveAtual->DADOS->Inicio;
+        while (P) {
+            if (strcmp(P->Info->ID, _id) == 0) {
+                MostrarPessoa(P->Info);
+                return P->Info; // Saímos da função porque encontramos o ISBN
+            }
+            P = P->Prox;
+        }
+        chaveAtual = chaveAtual->Prox;
+    }
+
+    printf("ID '%s' não encontrado.\n", _id);
+    return NULL;
+}
+//-----------------------------------------------------------------------------------------
 int IDExiste(HASHING *H, int ID) {
     NO_CHAVE *P = H->LChaves->Inicio;
     while (P) {
