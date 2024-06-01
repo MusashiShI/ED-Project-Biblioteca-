@@ -197,22 +197,34 @@ int AddLivroBiblioteca(BIBLIOTECA *B)
     fgets(AREA, sizeof(AREA), stdin);
     AREA[strcspn(AREA, "\n")] = '\0';  // Remove o newline no final
 
-    printf("\nID: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, "%d", &ID);
+    do {
+        printf("\nID: ");
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &ID);
+        if (IDExiste(B->HLivros, ID)) {
+            printf("ID já existe! Por favor, insira um ID único.\n");
+        }
+    } while (IDExiste(B->HLivros, ID));
 
+    // Verificação da data
+    do {
+        printf("\nData Da Criacao\nAno: ");
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &ano);
 
-    printf("\nData Da Criacao\nAno: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, "%d", &ano);
+        printf("\nMes: ");
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &mes);
 
-    printf("\nMes: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, "%d", &mes);
+        printf("\nDia: ");
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &dia);
 
-    printf("\nDia: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, "%d", &dia);
+        if (!DataValida(ano, mes, dia)) {
+            printf("Data inválida! Por favor, insira uma data válida.\n");
+        }
+    } while (!DataValida(ano, mes, dia));
+
 
     L = CriarLivro(isbn,Autor, titulo, AREA, ID, ano, mes, dia);
     AddHashing(B->HLivros, L);
@@ -424,4 +436,100 @@ void CategoriaMaisLivros(HASHING *H) {
     } else {
         printf("Nenhuma categoria encontrada.\n");
     }
+}
+
+
+void LivrosMaisRecentes(HASHING *H) {
+    if (!H || !H->LChaves) return;
+
+    NO_CHAVE *P = H->LChaves->Inicio;
+    int anoMaisRecente = 0;
+    LISTAL *livrosRecentes = CriarListaL();  // Lista para armazenar os livros mais recentes
+
+    // Encontrar o ano mais recente
+    while (P) {
+        NO *L = P->DADOS->Inicio;
+        while (L) {
+            if (L->Info->data.ano > anoMaisRecente) {
+                anoMaisRecente = L->Info->data.ano;
+            }
+            L = L->Prox;
+        }
+        P = P->Prox;
+    }
+
+    // Encontrar os livros com o ano mais recente
+    P = H->LChaves->Inicio;
+    while (P) {
+        NO *L = P->DADOS->Inicio;
+        while (L) {
+            if (L->Info->data.ano == anoMaisRecente) {
+                AddInicioL(livrosRecentes, L->Info);
+            }
+            L = L->Prox;
+        }
+        P = P->Prox;
+    }
+
+    // Mostrar os livros mais recentes
+    printf("Livros mais recentes (Ano: %d):\n", anoMaisRecente);
+    ShowListaL(livrosRecentes);
+
+    // Liberar a memória alocada para a lista temporária de livros recentes
+    DestruirListaL(livrosRecentes);
+}
+
+
+
+LIVRO* EncontrarLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
+    if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
+        return NULL;
+
+    NO *P = Bib->HLivros->LChaves->Inicio;
+
+    while (P)
+    {
+        printf("Comparando '%s' com '%s'\n", P->Info->isbn, _isbn);
+        if (strcmp(P->Info->isbn, _isbn) == 0)
+        {
+            MostrarLivro(P->Info);
+            return P->Info; // Saímos da função porque encontramos o ISBN
+        }
+        P = P->Prox;
+    }
+
+    printf("Livro com ISBN '%s' não encontrado.\n", _isbn);
+    return NULL;
+}
+
+
+int IDExiste(HASHING *H, int ID) {
+    NO_CHAVE *P = H->LChaves->Inicio;
+    while (P) {
+        NO *L = P->DADOS->Inicio;
+        while (L) {
+            if (L->Info->ID == ID) {
+                return 1; // ID já existe
+            }
+            L = L->Prox;
+        }
+        P = P->Prox;
+    }
+    return 0; // ID não existe
+}
+
+int DataValida(int ano, int mes, int dia) {
+    if (mes < 1 || mes > 12) {
+        return 0;
+    }
+
+    int diasNoMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) {
+        diasNoMes[1] = 29;
+    }
+    if (dia < 1 || dia > diasNoMes[mes - 1]) {
+        return 0;
+    }
+
+    return 1;
 }
