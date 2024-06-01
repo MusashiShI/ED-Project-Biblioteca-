@@ -17,6 +17,7 @@ typedef struct
 {
     char *NOME;
     char FICHEIRO_LOGS[50];
+    LIVRO *L;
     HASHING *HLivros;
     HASHINGP *HPessoas;
 
@@ -41,7 +42,7 @@ int ListarLivrosDaBiblioteca(BIBLIOTECA *B);
 
 LIVRO *LivroMaisRequisitadoBiblioteca(BIBLIOTECA *B);
 char *ApelidoMaisComum(BIBLIOTECA *B);
-char *AreaMaisComum(BIBLIOTECA *B);
+//void *AreaMaisComum(BIBLIOTECA *B);
 int AddRequisitante(BIBLIOTECA *B, PESSOA *X);
 int RequeitarLivro(BIBLIOTECA *B, PESSOA *X);
 int DevolverLivro(BIBLIOTECA *B, PESSOA *X);
@@ -49,4 +50,7 @@ PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod);
 int ListarLivrosRequesitados(BIBLIOTECA *B);
 int ListarClientes(BIBLIOTECA *B);
 int ListarRequesitantes(BIBLIOTECA *B);
+
+int ContarLivros(LISTAL *L);
+void CategoriaMaisLivros(HASHING *H);
 #endif // BIBLIOTECA_H_INCLUDED

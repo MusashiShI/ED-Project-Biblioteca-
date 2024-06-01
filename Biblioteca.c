@@ -130,10 +130,10 @@ int LoadFicheiroBibliotecaPessoas(BIBLIOTECA *B)
     if(!F) return 0;
 
     char BUFFER[1001];
-    printf(" 1 ");
+
     while(!feof(F))
     {
-         printf(" 2 ");
+
         fgets(BUFFER, 1000, F);
        // printf("Linha [%s] \n",BUFFER);
         int i = 0;
@@ -141,15 +141,15 @@ int LoadFicheiroBibliotecaPessoas(BIBLIOTECA *B)
         char *tokenp = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
         while (tokenp != NULL)
         {
-            printf(" 3 ");
+
             CAMPOS[i] = tokenp;
             tokenp = strtok (NULL, "\t\n");
             i++;
-         printf(" 4 ");
+
         }
-         printf(" 5 ");
+
         PESSOA *P = CriarPessoa(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3]);
-        printf(" 6 ");
+
         AddHashingp(B->HPessoas, P);
 
 
@@ -267,17 +267,29 @@ char *ApelidoMaisComum(BIBLIOTECA *B)
     return NULL;
 }
 //------------------------------------------------------------------------------
-char *AreaMaisComum(BIBLIOTECA *B)
-{
+/*
+void *AreaMaisComum(LISTAL *L, char *_area) {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
-    time_t now = time(NULL) ;
+    time_t now = time(NULL);
     fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
-    // Aqui o teu codigo
+
+    printf("Implementar <%s>\n", __func__);
+    if (L == NULL) return NULL;
+    NO *P = L->Inicio;
+    while (P)
+    {
+        if (stricmp(P->Info->AREA, _area) == 0)
+            return P->Info;
+        P = P->Prox;
+    }
+
+
 
     fclose(F_Logs);
     return NULL;
 }
+*/
 //------------------------------------------------------------------------------
 /*
 int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
@@ -380,3 +392,36 @@ int ListarRequesitantes(BIBLIOTECA *B)
 
 }
 //------------------------------------------------------------------------------
+int ContarLivros(LISTAL *L) {
+    int count = 0;
+    NO *p = L->Inicio;
+    while (p != NULL) {
+        count++;
+        p = p->Prox;
+    }
+    return count;
+}
+
+// Função para encontrar a categoria com mais livros
+void CategoriaMaisLivros(HASHING *H) {
+    if (!H || !H->LChaves) return;
+
+    NO_CHAVE *P = H->LChaves->Inicio;
+    NO_CHAVE *categoriaMaisLivros = NULL;
+    int maxLivros = 0;
+
+    while (P) {
+        int numLivros = ContarLivros(P->DADOS);
+        if (numLivros > maxLivros) {
+            maxLivros = numLivros;
+            categoriaMaisLivros = P;
+        }
+        P = P->Prox;
+    }
+
+    if (categoriaMaisLivros) {
+        printf("A categoria com mais livros é [%s] com [%d] livros.\n", categoriaMaisLivros->KEY, maxLivros);
+    } else {
+        printf("Nenhuma categoria encontrada.\n");
+    }
+}

@@ -36,7 +36,7 @@ int MenuAdm()
     printf("| 1- Listar Livros               |\n");
     printf("| 2- Adicionar Livro             |\n");
     printf("| 3- Listar Clientes             |\n");
-    printf("| 4- Listar Livros Requesitados  |\n");
+    printf("| 4- Categoria com Mais Livros   |\n");
     printf("| 5- Mostrar Biblioteca          |\n");
     printf("| 6- Destruir Biblioteca         |\n");
     printf("| 7- Verificar Memoria           |\n");
@@ -82,7 +82,7 @@ int MenuBiblio()
     printf("| 4- Determinar area com mais livros    |\n");
     printf("| 5- Verificar existência de um livro   |\n");
     printf("| 6- Livro mais requesitado             |\n");
-    printf("| 7- Livro mais recente                 |\n");
+    printf("| 7- Livro mais recente                 |\n"); // FACIL
     printf("| 8- Area mais requesitada              |\n");
     printf("| 0- Sair                               |\n");
     printf(" ---------------------------------------\n");
@@ -126,7 +126,10 @@ int main()
      LoadFicheiroBiblioteca(Bib);
      LoadFicheiroBibliotecaPessoas(Bib);
 
+
     int OP, OPB, OPL, OPA, OPC;
+    char isbnProcurado[100];
+    char _idproc[100];
     do
     {
         system("cls");
@@ -150,7 +153,7 @@ int main()
                             ShowPBiblioteca(Bib);
                             break;
                         case 4:
-                            // ListarLivrosRequesitados(BIBLIOTECA *B);
+                           CategoriaMaisLivros(Bib->HLivros);
                             break;
                         case 5:
                             ShowBiblioteca(Bib);
@@ -163,6 +166,12 @@ int main()
                             break;
                         case 8:
                             // PesquisarRequisitante(BIBLIOTECA *B, int cod);
+                            break;
+                        case 9:
+                            printf("\nColoque o ID da pessoa  que deseja pesquisar: ");
+                            limparBuffer();
+                            fgets(_idproc, sizeof(_idproc), stdin);
+                            PesquisarListaP(Bib->HPessoas->PChaves->Inicio->DADOS, _idproc);
                             break;
                     }
                 } while (OPA != 0);
@@ -213,8 +222,13 @@ int main()
                     switch (OPL)
                     {
                         case 1:
-
-                            break;
+                                printf("\nColoque o ISBN do livro que deseja pesquisar: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
+                                PesquisarListaL(Bib->HLivros->LChaves->Inicio->DADOS, isbnProcurado);
+                                break;
+                        break;
 
                     }
                 } while (OPL != 0);
