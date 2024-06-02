@@ -60,5 +60,5 @@ LIVRO* PesquisarArea(BIBLIOTECA *Bib, char *_area);
 PESSOA* EncontrarPessoaPorID(BIBLIOTECA *Bib, char *_id);
 int DataValida(int ano, int mes, int dia);
 int IDExiste(HASHING *H, int ID);
-removerLivroPorISBN(BIBLIOTECA *bib, char *_isbn);
+int removerLivroPorISBN(BIBLIOTECA *bib, char *_isbn);
 #endif // BIBLIOTECA_H_INCLUDED
