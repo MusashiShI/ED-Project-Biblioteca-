@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "Listagenerica.h"
-// #include "livro.h"   TESTES DE CARREGAR E LISTAR LIVROS.
+#include "ListaL.h"
+#include "ListaP.h"
+#include "HashingL.h"
+#include "HashingP.h"
+#include "Biblioteca.h"
 
 
 //----------------------------------------------------------------------------------------------------
 int Menu()
 {
+    printf("\n");
     printf(" ---------------------------\n");
     printf("|        MENU GERAL         |\n");
     printf(" ---------------------------\n");
@@ -25,18 +29,19 @@ int Menu()
 //----------------------------------------------------------------------------------------------------
 int MenuAdm()
 {
+    printf("\n");
     printf("   ---------------------------    \n");
     printf("  |       ADMINISTRACAO       |   \n");
     printf("   ---------------------------    \n");
-    printf("| 1- Listar Livro                |\n");
-    printf("| 2- Remover Livro               |\n");
-    printf("| 3- Listar Clientes             |\n");
+    printf("| 1- Listar Livros               |\n");
+    printf("| 2- Adicionar Livro             |\n");
+    printf("| 3- Categoria com Mais Livros   |\n");
     printf("| 4- Listar Livros Requesitados  |\n");
-    printf("| 5- Mostrar Biblioteca          |\n");
-    printf("| 6- Destruir Biblioteca         |\n");
-    printf("| 7- Verificar Memoria           |\n");
-    printf("| 8- Listar Requesitantes        |\n");
-    printf("| 9- Pesquisar Requesitante      |\n");
+    printf("| 5- Listar Clientes             |\n");
+    printf("| 6- Pesquisar Clientes          |\n");
+    printf("| 7- Mostrar Biblioteca          |\n");
+    printf("| 8- Verificar Memoria           |\n");
+    printf("| 9- Destruir Biblioteca         |\n");
     printf("| 0- Sair                        |\n");
     printf(" --------------------------------\n");
 
@@ -48,6 +53,7 @@ int MenuAdm()
 //----------------------------------------------------------------------------------------------------
 int Menuclient()
 {
+    printf("\n");
     printf(" ---------------------------\n");
     printf("|          CLIENTE          |\n");
     printf(" ---------------------------\n");
@@ -66,6 +72,7 @@ int Menuclient()
 //----------------------------------------------------------------------------------------------------
 int MenuBiblio()
 {
+    printf("\n");
     printf("      ---------------------------       \n");
     printf("     |          BIBLIOTECA       |      \n");
     printf("      ---------------------------       \n");
@@ -73,9 +80,9 @@ int MenuBiblio()
     printf("| 2- Remover livro                      |\n");
     printf("| 3- Listar livros                      |\n");
     printf("| 4- Determinar area com mais livros    |\n");
-    printf("| 5- Verificar exist√™ncia de um livro   |\n");
+    printf("| 5- Verificar existÍncia de um livro   |\n");
     printf("| 6- Livro mais requesitado             |\n");
-    printf("| 7- Livro mais recente                 |\n");
+    printf("| 7- Livro mais recente                 |\n"); // FACIL
     printf("| 8- Area mais requesitada              |\n");
     printf("| 0- Sair                               |\n");
     printf(" ---------------------------------------\n");
@@ -87,12 +94,13 @@ int MenuBiblio()
 //----------------------------------------------------------------------------------------------------
 int MenuLivro()
 {
+    printf("\n");
     printf("     ---------------------------       \n");
     printf("    |           LIVRO           |      \n");
     printf("     ---------------------------       \n");
     printf("| 1- Pesquisar Livro                   |\n");
     printf("| 2- Registrar Livro                   |\n");
-    printf("| 3- Verificar Exist√™ncia de Livro     |\n");
+    printf("| 3- Verificar ExistÍncia de Livro     |\n");
     printf("| 0- Sair                              |\n");
     printf(" --------------------------------------\n");
     int opLivro = 0;
@@ -110,13 +118,18 @@ int MenuLivro()
 int main()
 {
 
-    printf("Projeto-Biblioteca-Vers√£o-Base!\n");
+    printf("Projeto-Biblioteca-Vers„o-Base!\n");
 
 
-    // BIBLIOTECA *Bib;
-    // Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
-    
+     BIBLIOTECA *Bib;
+     Bib = CriarBiblioteca("Biblioteca-ESTGV", "log.txt");
+     LoadFicheiroBiblioteca(Bib);
+     LoadFicheiroBibliotecaPessoas(Bib);
+
+
     int OP, OPB, OPL, OPA, OPC;
+    char isbnProcurado[100];
+    char _idproc[100];
     do
     {
         system("cls");
@@ -131,28 +144,37 @@ int main()
                     switch (OPA)
                     {
                         case 1:
-                           // ListarLivros(Livros);  TESTES DE CARREGAR E LISTAR LIVROS.
+                            ShowLBiblioteca(Bib);
                             break;
                         case 2:
-                            // RemoverLivroBiblioteca(BIBLIOTECA *B, int isbn);
+                            AddLivroBiblioteca(Bib);
                             break;
                         case 3:
-                            // ListarClientes(BIBLIOTECA *B);
+                            CategoriaMaisLivros(Bib->HLivros);
                             break;
                         case 4:
-                            // ListarLivrosRequesitados(BIBLIOTECA *B);
+                          // ListarLivros Requesitados
                             break;
                         case 5:
-                            // ShowBiblioteca(BIBLIOTECA *B);
+                            ShowPBiblioteca(Bib);
                             break;
                         case 6:
-                            // DestruirBiblioteca(BIBLIOTECA *B);
+                                printf("\nColoque o ID da Pessoa que deseja pesquisar: ");
+                                limparBuffer();
+                                fgets(_idproc, sizeof(_idproc), stdin);
+                                _idproc[strcspn(_idproc, "\n")] = '\0'; // Remove o newline no final
+                                EncontrarPessoaPorID(Bib, _idproc);
                             break;
                         case 7:
-                          //  memoriaOcupada();
+                                ShowBiblioteca(Bib);
                             break;
                         case 8:
-                            // PesquisarRequisitante(BIBLIOTECA *B, int cod);
+
+                            break;
+                        case 9:
+                            DestruirBiblioteca(Bib);
+                            DestruirHashing(Bib->HLivros);
+                            DestruirHashingp(Bib->HPessoas);
                             break;
                     }
                 } while (OPA != 0);
@@ -191,6 +213,9 @@ int main()
                         case 2:
                             // Remover livro
                             break;
+                        case 7:
+                            LivrosMaisRecentes(Bib->HLivros);
+                            break;
                     }
                 } while (OPB != 0);
                 break;
@@ -203,15 +228,34 @@ int main()
                     switch (OPL)
                     {
                         case 1:
-                            // Pesquisar Livro
-                            break;
+                                printf("\nColoque o ISBN do livro que deseja pesquisar: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
+                                EncontrarLivroPorISBN(Bib, isbnProcurado);
+
+
+                        break;
+
+
+                        case 2:
+                            AddLivroBiblioteca(Bib);
+                        break;
+                        case 3:
+                                printf("\nColoque o ISBN do livro que deseja ver se existe: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
+                                ExistenciaDoLivroPorISBN(Bib, isbnProcurado);
+                        break;
+
                     }
                 } while (OPL != 0);
                 break;
 
             default:
                 if (OP != 0)
-                    printf("opcao n√£o implementada\n");
+                    printf("opcao n„o implementada\n");
                 break;
         }
     } while (OP != 0);
