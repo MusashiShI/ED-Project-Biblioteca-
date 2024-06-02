@@ -481,6 +481,25 @@ LIVRO* EncontrarLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
     return NULL;
 }
 //---------------------------------------------------------------------------------------
+LIVRO* PesquisarArea(BIBLIOTECA *Bib, char *_area) {
+    if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
+        return NULL;
+
+    NO_CHAVE *chaveAtual = Bib->HLivros->LChaves->Inicio;
+    while (chaveAtual) {
+        NO *P = chaveAtual->DADOS->Inicio;
+        while (P) {
+            if (strcmp(P->Info->AREA, _area) == 0) {
+                        printf("Area '%s' encontrado.\n", _area);
+            P = P->Prox;
+        }
+        chaveAtual = chaveAtual->Prox;
+    }
+    }
+    printf("Area '%s' não encontrado.\n", _area);
+    return NULL;
+}
+//---------------------------------------------------------------------------------------
 LIVRO* ExistenciaDoLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
     if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
         return NULL;
@@ -492,7 +511,7 @@ LIVRO* ExistenciaDoLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
             if (strcmp(P->Info->isbn, _isbn) == 0) {
                 printf("\n Livro Existe: ");
                 MostrarLivro(P->Info);
-                return P->Info; // Saímos da função porque encontramos o ISBN
+                return P->Info;
             }
             P = P->Prox;
         }
@@ -554,4 +573,42 @@ int DataValida(int ano, int mes, int dia) {
     }
 
     return 1;
+}
+int removerLivroPorISBN(BIBLIOTECA *bib, char *_isbn) {
+    if (bib == NULL || _isbn == NULL || bib->HLivros == NULL || bib->HLivros->LChaves == NULL) return 0;
+
+    LISTA_CHAVES *listaChaves = bib->HLivros->LChaves;
+    NO_CHAVE *chaveAtual = listaChaves->Inicio;
+
+    while (chaveAtual != NULL) {
+        LISTAL *lista = chaveAtual->DADOS;
+        NO *atual = lista->Inicio;
+        NO *anterior = NULL;
+
+        while (atual != NULL) {
+            if (strcmp(atual->Info->isbn, _isbn) == 0) {
+                if (anterior == NULL) {
+                    // Remover o primeiro nó
+                    lista->Inicio = atual->Prox;
+                } else {
+                    // Remover nó do meio ou final
+                    anterior->Prox = atual->Prox;
+                }
+                free(atual->Info->isbn);
+                free(atual->Info->Autor);
+                free(atual->Info->titulo);
+                free(atual->Info->AREA);
+                free(atual->Info);
+                free(atual);
+                lista->NEL--;
+                return 1; // Sucesso
+            }
+            anterior = atual;
+            atual = atual->Prox;
+        }
+
+        chaveAtual = chaveAtual->Prox;
+    }
+
+    return 0; // Livro não encontrado
 }

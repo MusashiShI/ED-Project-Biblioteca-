@@ -58,9 +58,9 @@ int Menuclient()
     printf("|          CLIENTE          |\n");
     printf(" ---------------------------\n");
     printf("| 1- Requesitar Livro       |\n");
-    printf("| 2- Devolver Livro         |\n");
+    printf("| 2- Devolver Livro         |\n"); //NAO FEITA
     printf("| 3- Pesquisar Livro        |\n");
-    printf("| 4- Pesquisar Area         |\n");
+    printf("| 4- Listar Livros          |\n");
     printf("| 0- Sair                   |\n");
     printf(" ---------------------------\n");
 
@@ -130,6 +130,7 @@ int main()
     int OP, OPB, OPL, OPA, OPC;
     char isbnProcurado[100];
     char _idproc[100];
+    char _areaproc[100];
     do
     {
         system("cls");
@@ -194,8 +195,17 @@ int main()
                             // DevolverLivro(BIBLIOTECA *B, PESSOA *X);
                             break;
                         case 3:
-                            // Pesquisar Livro
+                                printf("\nColoque o ISBN do livro que deseja pesquisar: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0';
+                                EncontrarLivroPorISBN(Bib, isbnProcurado);
+                                limparBuffer();
                             break;
+                        case 4:
+                            ShowLBiblioteca(Bib);
+                            break;
+
                     }
                 } while (OPC != 0);
                 break;
@@ -211,7 +221,13 @@ int main()
                             // Adicionar livro
                             break;
                         case 2:
-                            // Remover livro
+                                printf("\nColoque o ISBN do livro que deseja pesquisar: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0';
+                                removerLivroPorISBN(Bib, isbnProcurado);
+                                limparBuffer();
+
                             break;
                         case 7:
                             LivrosMaisRecentes(Bib->HLivros);
@@ -233,6 +249,7 @@ int main()
                                 fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
                                 isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
                                 EncontrarLivroPorISBN(Bib, isbnProcurado);
+                                limparBuffer();
 
 
                         break;
@@ -247,6 +264,7 @@ int main()
                                 fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
                                 isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
                                 ExistenciaDoLivroPorISBN(Bib, isbnProcurado);
+                                limparBuffer();
                         break;
 
                     }
