@@ -218,7 +218,7 @@ int main()
                     switch (OPB)
                     {
                         case 1:
-                            // Adicionar livro
+                            AddLivroBiblioteca(Bib);
                             break;
                         case 2:
                                 printf("\nColoque o ISBN do livro que deseja pesquisar: ");
@@ -228,6 +228,20 @@ int main()
                                 removerLivroPorISBN(Bib, isbnProcurado);
                                 limparBuffer();
 
+                            break;
+                        case 3:
+                            ShowLBiblioteca(Bib);
+                            break;
+                        case 4:
+                            CategoriaMaisLivros(Bib->HLivros);
+                            break;
+                        case 5:
+                                printf("\nColoque o ISBN do livro que deseja ver se existe: ");
+                                limparBuffer();
+                                fgets(isbnProcurado, sizeof(isbnProcurado), stdin);
+                                isbnProcurado[strcspn(isbnProcurado, "\n")] = '\0'; // Remove o newline no final
+                                ExistenciaDoLivroPorISBN(Bib, isbnProcurado);
+                                limparBuffer();
                             break;
                         case 7:
                             LivrosMaisRecentes(Bib->HLivros);
