@@ -24,6 +24,7 @@ BIBLIOTECA *CriarBiblioteca(char *_nome, char *_logs)
     strcpy(Bib->FICHEIRO_LOGS, _logs);
     Bib->HLivros = CriarHashing();
     Bib->HPessoas = CriarHashingp();
+    Bib->Req = CriarListaR();
     //Bib->LRequisicoes = CriarListaRequisicoes();
     //Bib->LRequisitantes = CriarListaPessoas();
     return Bib;
@@ -80,7 +81,9 @@ void DestruirBiblioteca(BIBLIOTECA *B)
     time_t now = time(NULL) ;
     fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
-    // Vosso Codigo.....
+    DestruirListaR(B->Req);
+    DestruirHashing(B->HLivros);
+    DestruirHashingp(B->HPessoas);
     free (B->NOME);
     //------
     free(B);
@@ -88,76 +91,7 @@ void DestruirBiblioteca(BIBLIOTECA *B)
     fclose(F_Logs);
 }
 //------------------------------------------------------------------------------
-int LoadFicheiroBiblioteca(BIBLIOTECA *B)
-{
 
-   printf("Entrei na Função %s", __func__);
-    FILE *F = fopen("livros.txt","r"); // FILE *F = fopen(ficheiro,"r");
-    if(!F) return 0;
-
-    char BUFFER[1001];
-    while(!feof(F))
-    {
-
-        fgets(BUFFER, 1000, F);
-       // printf("Linha [%s] \n",BUFFER);
-        int i = 0;
-        char *CAMPOS[8];
-        char *token = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
-        while (token != NULL)
-        {
-
-            CAMPOS[i] = token;
-            token = strtok (NULL, "\t\n");
-            i++;
-        }
-
-        LIVRO *L = CriarLivro(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3], atoi(CAMPOS[4]), atoi(CAMPOS[5]), atoi(CAMPOS[6]), atoi(CAMPOS[7])); //atof usa-se em float
-        AddHashing(B->HLivros, L);
-
-    }
-    fclose(F);
-    printf("Sai da Função %s", __func__);
-    return 1;
-}
-//----------------------------------------------------------------------------------------------
-int LoadFicheiroBibliotecaPessoas(BIBLIOTECA *B)
-{
-
-
-   printf("Entrei na Função %s", __func__);
-    FILE *F = fopen("requesitantes.txt","r"); // FILE *F = fopen(ficheiro,"r");
-    if(!F) return 0;
-
-    char BUFFER[1001];
-
-    while(!feof(F))
-    {
-
-        fgets(BUFFER, 1000, F);
-       // printf("Linha [%s] \n",BUFFER);
-        int i = 0;
-        char *CAMPOS[4];
-        char *tokenp = strtok (BUFFER, "\t\n"); //Separa a string pelo '\t'
-        while (tokenp != NULL)
-        {
-
-            CAMPOS[i] = tokenp;
-            tokenp = strtok (NULL, "\t\n");
-            i++;
-
-        }
-
-        PESSOA *P = CriarPessoa(CAMPOS[0], CAMPOS[1], CAMPOS[2], CAMPOS[3]);
-
-        AddHashingp(B->HPessoas, P);
-
-
-    }
-    fclose(F);
-    printf("Sai da Função %s", __func__);
-    return 1;
-}
 //------------------------------------------------------------------------------
 
 int AddLivroBiblioteca(BIBLIOTECA *B)
@@ -281,18 +215,60 @@ char *ApelidoMaisComum(BIBLIOTECA *B)
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-/*
-int AddRequisitante(BIBLIOTECA *B, PESSOA *X)
+
+int AddRequisitante(BIBLIOTECA *B)
 {
-    FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
-    time_t now = time(NULL) ;
+
+    PESSOA *P;
+    char id[20];
+    char nome[100];
+    char data[100];
+    char idfreg[100];
+    char buffer[100];
+
+    FILE *F_Logs = fopen("logfile.txt", "a");// Exemplo de arquivo de log
+    if (F_Logs == NULL) {
+        fprintf(stderr, "Erro ao abrir o arquivo de log.\n");
+        return 1;
+    }
+    time_t now = time(NULL);
     fprintf(F_Logs, "Entrei em %s na data %s\n", __func__, ctime(&now));
 
-    // Aqui o teu codigo
+    printf("\nColoque as Informações do Novo Requesitante:\n");
+    limparBuffer();
+    printf("ID: ");
+    fgets(id, sizeof(id), stdin);
+    id[strcspn(id, "\n")] = '\0';  // Remove o newline no final
+
+
+    printf("\nNome: ");
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = '\0';  // Remove o newline no final
+
+    printf("\nData (xx-yy-zzzz): ");
+    fgets(data, sizeof(data), stdin);
+    data[strcspn(data, "\n")] = '\0';  // Remove o newline no final
+
+    printf("\nId Freguesia: ");
+    fgets(idfreg, sizeof(idfreg), stdin);
+    idfreg[strcspn(idfreg, "\n")] = '\0';  // Remove o newline no final
+
+
+
+    P = CriarPessoa(id,nome,data,idfreg);
+    AddHashingp(B->HPessoas, P);
+    FILE *FR = fopen("requesitantes.txt", "a"); // Abrir o arquivo em modo de escrita, adicionando ao final
+    if (FR == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return 1;
+    }
+    fprintf(FR,"\n%s\t%s\t%s\t%s",id, nome, data, idfreg);
 
     fclose(F_Logs);
-    return EXIT_SUCCESS;
+    fclose(FR);
+    return 1;
 }
+
 //------------------------------------------------------------------------------
 int RequeitarLivro(BIBLIOTECA *B, PESSOA *X)
 {
@@ -330,7 +306,7 @@ PESSOA *PesquisarRequisitante(BIBLIOTECA *B, int cod)
     return NULL;
 }
 //------------------------------------------------------------------------------
-*/
+
 int ListarLivrosRequesitados(BIBLIOTECA *B)
 {
     FILE *F_Logs = fopen(B->FICHEIRO_LOGS, "a");
@@ -481,24 +457,6 @@ LIVRO* EncontrarLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
     return NULL;
 }
 //---------------------------------------------------------------------------------------
-LIVRO* PesquisarArea(BIBLIOTECA *Bib, char *_area) {
-    if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
-        return NULL;
-
-    NO_CHAVE *chaveAtual = Bib->HLivros->LChaves->Inicio;
-    while (chaveAtual) {
-        NO *P = chaveAtual->DADOS->Inicio;
-        while (P) {
-            if (strcmp(P->Info->AREA, _area) == 0) {
-                        printf("Area '%s' encontrado.\n", _area);
-            P = P->Prox;
-        }
-        chaveAtual = chaveAtual->Prox;
-    }
-    }
-    printf("Area '%s' não encontrado.\n", _area);
-    return NULL;
-}
 //---------------------------------------------------------------------------------------
 LIVRO* ExistenciaDoLivroPorISBN(BIBLIOTECA *Bib, char *_isbn) {
     if (Bib == NULL || Bib->HLivros == NULL || Bib->HLivros->LChaves == NULL || Bib->HLivros->LChaves->Inicio == NULL)
@@ -543,6 +501,31 @@ PESSOA* EncontrarPessoaPorID(BIBLIOTECA *Bib, char *_id) {
     printf("ID '%s' não encontrado.\n", _id);
     return NULL;
 }
+//----------------------------------------------------------------------------------------
+int ExistenciadoRequesitante(BIBLIOTECA *Bib, char *_id) {
+    if (Bib == NULL || _id == NULL) {
+        printf("Dados inválidos fornecidos.\n");
+        return 0; // Retorna 0 indicando falha na pesquisa
+    }
+
+    if (Bib->Req == NULL || Bib->Req->Inicio == NULL) {
+        printf("Lista de requesitantes vazia.\n");
+        return 0; // Retorna 0 indicando falha na pesquisa
+    }
+
+    NOR *atual = Bib->Req->Inicio;
+    while (atual != NULL) {
+        if (strcmp(atual->Info->Ptr_Req->ID, _id) == 0) {
+            printf("Requesitante com ID %s Tem Livros Requesitados.\n", _id);
+            return 1; // Retorna 1 indicando sucesso na pesquisa
+        }
+        atual = atual->Prox;
+    }
+
+    printf("Requesitante com ID %s não encontrado.\n", _id);
+    return 0; // Retorna 0 indicando falha na pesquisa
+}
+
 //-----------------------------------------------------------------------------------------
 int IDExiste(HASHING *H, int ID) {
     NO_CHAVE *P = H->LChaves->Inicio;
@@ -612,3 +595,50 @@ int removerLivroPorISBN(BIBLIOTECA *bib, char *_isbn) {
 
     return 0; // Livro não encontrado
 }
+
+//---------------------------------------------------------------
+int CalcularIdade(char *datan) {
+    int dia, mes, ano;
+    sscanf(datan, "%d-%d-%d", &dia, &mes, &ano);  // Corrigido para o formato "dd-mm-yyyy"
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    int idade = tm.tm_year + 1900 - ano;
+
+    if (tm.tm_mon + 1 < mes || (tm.tm_mon + 1 == mes && tm.tm_mday < dia)) {
+        idade--;
+    }
+
+    return idade;
+}
+
+void CalcularMediaIdadeRequisitantes(BIBLIOTECA *B) {
+    if (B == NULL || B->HPessoas == NULL || B->HPessoas->PChaves->Inicio == NULL) {
+        printf("0.0");
+    }
+
+    NO_CHAVEp *chaveAtual = B->HPessoas->PChaves->Inicio;
+    int somaIdades = 0;
+    int contagem = 0;
+
+    while (chaveAtual != NULL) {
+        NOp *pessoaAtual = chaveAtual->DADOS->Inicio;
+        while (pessoaAtual != NULL) {
+            int idade = CalcularIdade(pessoaAtual->Info->datan);
+            somaIdades += idade;
+            contagem++;
+            pessoaAtual = pessoaAtual->Prox;
+        }
+        chaveAtual = chaveAtual->Prox;
+    }
+
+    if (contagem == 0) {
+        printf("0.0");
+    }
+    float media = somaIdades / contagem;
+    printf("A media e %.1f:",media); // Corrigido o cálculo da média
+}
+
+
+

@@ -6,6 +6,7 @@
 #include "HashingL.h"
 #include "HashingP.h"
 #include "Biblioteca.h"
+#include "Texto.h"
 
 
 //----------------------------------------------------------------------------------------------------
@@ -39,9 +40,10 @@ int MenuAdm()
     printf("| 4- Listar Livros Requesitados  |\n");
     printf("| 5- Listar Clientes             |\n");
     printf("| 6- Pesquisar Clientes          |\n");
-    printf("| 7- Mostrar Biblioteca          |\n");
-    printf("| 8- Verificar Memoria           |\n");
-    printf("| 9- Destruir Biblioteca         |\n");
+    printf("| 7- Adicionar Pessoa            |\n");
+    printf("| 8- Mostrar Biblioteca          |\n");
+    printf("| 9- Verificar Memoria           |\n");
+    printf("| 10- Destruir Biblioteca        |\n");
     printf("| 0- Sair                        |\n");
     printf(" --------------------------------\n");
 
@@ -54,15 +56,16 @@ int MenuAdm()
 int Menuclient()
 {
     printf("\n");
-    printf(" ---------------------------\n");
-    printf("|          CLIENTE          |\n");
-    printf(" ---------------------------\n");
-    printf("| 1- Requesitar Livro       |\n");
-    printf("| 2- Devolver Livro         |\n"); //NAO FEITA
-    printf("| 3- Pesquisar Livro        |\n");
-    printf("| 4- Listar Livros          |\n");
-    printf("| 0- Sair                   |\n");
-    printf(" ---------------------------\n");
+    printf(" -------------------------------\n");
+    printf("|             CLIENTE           |\n");
+    printf(" -------------------------------\n");
+    printf("| 1- Requesitar Livro           |\n");
+    printf("| 2- Devolver Livro             |\n"); //NAO FEITA
+    printf("| 3- Pesquisar Livro            |\n");
+    printf("| 4- Listar Livros              |\n");
+    printf("| 5- Listar Livros Requesitados |\n");
+    printf("| 0- Sair                       |\n");
+    printf(" -------------------------------\n");
 
     int opclient = 0;
     printf("Qual a opcao? ");
@@ -73,19 +76,20 @@ int Menuclient()
 int MenuBiblio()
 {
     printf("\n");
-    printf("      ---------------------------       \n");
-    printf("     |          BIBLIOTECA       |      \n");
-    printf("      ---------------------------       \n");
-    printf("| 1- Adicionar livro                    |\n");
-    printf("| 2- Remover livro                      |\n");
-    printf("| 3- Listar livros                      |\n");
-    printf("| 4- Determinar area com mais livros    |\n");
-    printf("| 5- Verificar existência de um livro   |\n");
-    printf("| 6- Livro mais requesitado             |\n");
-    printf("| 7- Livro mais recente                 |\n"); // FACIL
-    printf("| 8- Area mais requesitada              |\n");
-    printf("| 0- Sair                               |\n");
-    printf(" ---------------------------------------\n");
+    printf("      ---------------------------            \n");
+    printf("     |          BIBLIOTECA       |           \n");
+    printf("      ---------------------------            \n");
+    printf("| 1- Adicionar livro                         |\n");
+    printf("| 2- Remover livro                           |\n");
+    printf("| 3- Listar livros                           |\n");
+    printf("| 4- Determinar area com mais livros         |\n");
+    printf("| 5- Verificar existência de um livro        |\n");
+    printf("| 6- Listar Livros Requesitados              |\n");
+    printf("| 7- Livro mais recente                      |\n"); // FACIL
+    printf("| 8- Pessoas com Livros Requesitados         |\n");
+    printf("| 9- Media da idade das Pessoas              |\n");
+    printf("| 0- Sair                                    |\n");
+    printf(" --------------------------------------------\n");
     int opBiblio = 0;
     printf("Qual a opcao? ");
     scanf("%d", &opBiblio);
@@ -130,7 +134,9 @@ int main()
     int OP, OPB, OPL, OPA, OPC;
     char isbnProcurado[100];
     char _idproc[100];
-    char _areaproc[100];
+
+    char idPessoa[100], isbnLivro[100];
+
     do
     {
         system("cls");
@@ -154,7 +160,8 @@ int main()
                             CategoriaMaisLivros(Bib->HLivros);
                             break;
                         case 4:
-                          // ListarLivros Requesitados
+                            printf("\nLista de requisitantes:");
+                            ShowListaR(Bib->Req);
                             break;
                         case 5:
                             ShowPBiblioteca(Bib);
@@ -167,15 +174,26 @@ int main()
                                 EncontrarPessoaPorID(Bib, _idproc);
                             break;
                         case 7:
-                                ShowBiblioteca(Bib);
+                               AddRequisitante(Bib);
                             break;
                         case 8:
-
+                                ShowBiblioteca(Bib);
                             break;
                         case 9:
+
+                                printf("Tamanho da estrutura BIBLIOTECA: %lu bytes\n", sizeof(BIBLIOTECA));
+                                printf("Tamanho da estrutura HASHING: %lu bytes\n", sizeof(HASHING));
+                                printf("Tamanho da estrutura HASHINGP: %lu bytes\n", sizeof(HASHINGP));
+                                printf("Tamanho da estrutura LISTAL: %lu bytes\n", sizeof(LISTAL));
+                                printf("Tamanho da estrutura LISTARR: %lu bytes\n", sizeof(LISTARR));
+                                printf("Tamanho da estrutura LIVRO: %lu bytes\n", sizeof(LIVRO));
+                                printf("Tamanho da estrutura PESSOA: %lu bytes\n", sizeof(PESSOA));
+                                printf("Tamanho da estrutura REQUISITANTE: %lu bytes\n", sizeof(REQUISITANTE));
+
+
+                            break;
+                        case 10:
                             DestruirBiblioteca(Bib);
-                            DestruirHashing(Bib->HLivros);
-                            DestruirHashingp(Bib->HPessoas);
                             break;
                     }
                 } while (OPA != 0);
@@ -189,7 +207,39 @@ int main()
                     switch (OPC)
                     {
                         case 1:
-                            // RequeitarLivro(BIBLIOTECA *B, PESSOA *X);
+                                    printf("Digite o ID da pessoa: ");
+                                    scanf("%s", idPessoa);
+
+                                    printf("Digite o ISBN do livro: ");
+                                    scanf("%s", isbnLivro);
+
+
+                                    // Buscando a pessoa e o livro
+                                    PESSOA *pessoa = EncontrarPessoaPorID(Bib, idPessoa);
+                                    LIVRO *livro = EncontrarLivroPorISBN(Bib, isbnLivro);
+
+                                    if (pessoa == NULL) {
+                                        printf("Pessoa com ID %s não encontrada.\n", idPessoa);
+                                        return -1;
+                                    }
+
+                                    if (livro == NULL) {
+                                        printf("Livro com ISBN %s não encontrado.\n", isbnLivro);
+                                        return -1;
+                                    }
+
+                                        REQUISITANTE *requisitante = CriarRequisitante(pessoa, livro);
+                                        if (!requisitante) {
+                                            printf("Falha ao criar requisitante.\n");
+                                        }
+
+                                        // Adicionando o requisitante na lista da biblioteca
+                                        AddInicioR(Bib->Req, requisitante);
+                                        printf("Requisitante adicionado com sucesso.\n");
+
+                                    printf("\nLista de requisitantes:");
+                                    ShowListaR(Bib->Req);
+
                             break;
                         case 2:
                             // DevolverLivro(BIBLIOTECA *B, PESSOA *X);
@@ -204,6 +254,10 @@ int main()
                             break;
                         case 4:
                             ShowLBiblioteca(Bib);
+                            break;
+                        case 5:
+                                printf("\nLista de requisitantes:");
+                                ShowListaR(Bib->Req);
                             break;
 
                     }
@@ -243,8 +297,22 @@ int main()
                                 ExistenciaDoLivroPorISBN(Bib, isbnProcurado);
                                 limparBuffer();
                             break;
+                        case 6:
+                                    printf("\nLista de requisitantes:");
+                                    ShowListaR(Bib->Req);
+                            break;
                         case 7:
-                            LivrosMaisRecentes(Bib->HLivros);
+                                LivrosMaisRecentes(Bib->HLivros);
+                            break;
+                        case 8:
+                                    limparBuffer();
+                                    printf("Digite o ID da pessoa: ");
+                                    scanf("%s", idPessoa);
+                                    ExistenciadoRequesitante(Bib,idPessoa);
+
+                            break;
+                        case 9:
+                            CalcularMediaIdadeRequisitantes(Bib);
                             break;
                     }
                 } while (OPB != 0);

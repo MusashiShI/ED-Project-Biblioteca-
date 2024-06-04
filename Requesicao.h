@@ -9,15 +9,13 @@
 #include "Livro.h"
 typedef struct
 {
-    //int ID_PESSOA;
-    int ID;
     PESSOA *Ptr_Req;
     LIVRO *Ptr_Livro;
-    //DATA Data_Requisicao;
-}REQUISITANTE;
+} REQUISITANTE;
 
-REQUISITANTE *CriarRequisitante(int _id, PESSOA *P, LIVRO *L);
+REQUISITANTE *CriarRequisitante(PESSOA *P, LIVRO *L);
 void MostrarRequisitante(REQUISITANTE *P);
 void DestruirRequisitante(REQUISITANTE *P);
+
 
 #endif // REQUISICAO_H_INCLUDED

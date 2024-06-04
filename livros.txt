@@ -49,3 +49,7 @@
 9780141036138	Donald E. Knuth	The Art of Computer Programming	Programacao	49	1968	1	1
 9781501187478	Steven S. Skiena	The Algorithm Design Manual	Programacao	50	2008	10	20
 1242531254363	Jose Beselga	A Arvore	Historia	56	1	8	2022
+123	Amelia	sol da madrugada	romance	2253	12	5	2023
+2647456352	Fernando	A madrugada do sol	romance	321	2	12	2022
+275632343243	Martinho	Nos O Turbo	Hidraulica	53	2	10	2002
+123654542	Jose Manel	Heiei	Arte	51	5	12	2022
