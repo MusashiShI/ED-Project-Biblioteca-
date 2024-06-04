@@ -7,11 +7,14 @@ Tiago Manuel - [pv22528];
 Victor Rocha - [pv19544].
 
 
+# Technologies Used: 
+Code Blocks, HASHING, LISTS
 
 
+# MORE...
 
 STATUS PROJECT: DONE!!
 UPDATES: NEVER!
-
+TECNOLIGIE USED
 
 Open Projecto_ED_23_24.CBP for CodeBlocks Project!!
